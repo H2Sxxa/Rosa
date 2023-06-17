@@ -1,8 +1,12 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:system_theme/system_theme.dart';
 
+import 'package:rosa/routes/page_home.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(const FluentApp(
+    home: MyApp(),
+  ));
 }
 
 class MyApp extends StatefulWidget {
@@ -35,15 +39,23 @@ class MyAppState extends State<MyApp> {
             PaneItem(
               icon: const Icon(FluentIcons.home),
               title: const Text("Home"),
-              body: const ScaffoldPage(
-                header: Text("HOME PAGE IS HERE"),
-              ),
+              body: const HomeRoute(),
             ),
+            PaneItemHeader(header: const Text('Setup')),
             PaneItem(
               icon: const Icon(FluentIcons.toolbox),
-              title: const Text("TOOKIT"),
-              body: const ScaffoldPage(header: Text("TOOKIT PAGE IS HERE")),
-            ),
+              title: const Text("Toolkit"),
+              body: const SizedBox.shrink(),
+            )
+          ], footerItems: [
+            PaneItem(
+                icon: const Icon(FluentIcons.settings),
+                title: const Text("Settings"),
+                body: const SizedBox.shrink()),
+            PaneItem(
+                icon: const Icon(FluentIcons.leave),
+                title: const Text("Exit"),
+                body: const SizedBox.shrink())
           ]),
         ));
   }
