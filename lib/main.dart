@@ -4,9 +4,9 @@ import 'package:system_theme/system_theme.dart';
 import 'package:rosa/routes/page_home.dart';
 
 void main() {
-  runApp(const FluentApp(
-    home: MyApp(),
-  ));
+  runApp(
+    const MyApp(),
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -33,13 +33,18 @@ class MyAppState extends State<MyApp> {
             iconTheme:
                 IconThemeData(size: 24, color: SystemTheme.accentColor.accent)),
         home: NavigationView(
+          paneBodyBuilder: (item, body) {
+            return const ScaffoldPage(
+              header: Text("hello"),
+            );
+          },
           appBar:
               const NavigationAppBar(title: Text("ROSA - Setup the workspace")),
           pane: NavigationPane(displayMode: PaneDisplayMode.auto, items: [
             PaneItem(
               icon: const Icon(FluentIcons.home),
               title: const Text("Home"),
-              body: const HomeRoute(),
+              body: const SizedBox.shrink(),
             ),
             PaneItemHeader(header: const Text('Setup')),
             PaneItem(
