@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:system_theme/system_theme.dart';
+import 'package:bitsdojo_window/bitsdojo_window.dart';
 
 import 'package:rosa/routes/page_home.dart';
 
@@ -9,6 +10,12 @@ void main() {
   runApp(
     const MyApp(),
   );
+  doWhenWindowReady(() {
+    final win = appWindow;
+    win.alignment = Alignment.center;
+    win.minSize = const Size(600, 450);
+    win.show();
+  });
 }
 
 class MyApp extends StatefulWidget {
