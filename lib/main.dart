@@ -12,6 +12,7 @@ void main() {
   );
   doWhenWindowReady(() {
     final win = appWindow;
+    win.title = "ROSA - Setup the dev environment";
     win.alignment = Alignment.center;
     win.minSize = const Size(600, 450);
     win.show();
@@ -67,8 +68,6 @@ class _MyAppState extends State<MyApp> {
             index: _pageindex,
             children: pages,
           ),
-          appBar:
-              const NavigationAppBar(title: Text("ROSA - Setup the workspace")),
           pane: NavigationPane(
               displayMode: PaneDisplayMode.auto,
               selected: _pageindex,
