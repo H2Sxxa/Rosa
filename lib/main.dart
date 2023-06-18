@@ -35,6 +35,7 @@ class _MyAppState extends State<MyApp> {
     const HomePage(),
     const Text("Page 2"),
     const Text("Page 3"),
+    const Text("Page 4"),
     ContentDialog(
       title: const Text('EXIT WARNING'),
       content: Text(
@@ -82,6 +83,11 @@ class _MyAppState extends State<MyApp> {
                 PaneItem(
                   icon: const Icon(FluentIcons.toolbox),
                   title: const Text("Toolkit"),
+                  body: const SizedBox.shrink(),
+                ),
+                PaneItem(
+                  icon: const Icon(FluentIcons.sticky_notes_outline_app_icon),
+                  title: const Text("Sticky board"),
                   body: const SizedBox.shrink(),
                 )
               ],
