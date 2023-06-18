@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:system_theme/system_theme.dart';
 
@@ -25,6 +27,19 @@ class _MyAppState extends State<MyApp> {
     const HomePage(),
     const Text("Page 2"),
     const Text("Page 3"),
+    ContentDialog(
+      title: const Text('EXIT WARNING'),
+      content: Text(
+        'The unfinalished works will be lost',
+        style: TextStyle(color: Colors.red),
+      ),
+      actions: [
+        FilledButton(
+          onPressed: () => exit(0),
+          child: const Text('Exit'),
+        ),
+      ],
+    ),
   ];
 
   @override
