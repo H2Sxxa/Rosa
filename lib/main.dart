@@ -4,7 +4,9 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:system_theme/system_theme.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 
-import 'package:rosa/routes/page_home.dart';
+import 'package:rosa/markdown/pagegen.dart';
+
+const localizationPath = 'asset/i18n/zh_cn/';
 
 void main() {
   runApp(
@@ -32,7 +34,7 @@ class _MyAppState extends State<MyApp> {
   int _pageindex = 0;
 
   final pages = [
-    const HomePage(),
+    const MarkdownFilePage(path: "${localizationPath}md/home.md"),
     const Text("Page 2"),
     const Text("Page 3"),
     const Text("Page 4"),
