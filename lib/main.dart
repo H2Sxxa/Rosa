@@ -57,11 +57,13 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return FluentApp(
         theme: FluentThemeData(
+            fontFamily: "aPoppins",
             brightness: Brightness.light,
             accentColor: SystemTheme.accentColor.accent.toAccentColor(),
             iconTheme:
                 IconThemeData(size: 24, color: SystemTheme.accentColor.accent)),
         darkTheme: FluentThemeData(
+            fontFamily: "aPoppins",
             brightness: Brightness.dark,
             accentColor: SystemTheme.accentColor.accent.toAccentColor(),
             iconTheme:

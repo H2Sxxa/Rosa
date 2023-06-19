@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
 class MarkdownFilePage extends StatelessWidget {
@@ -9,6 +10,10 @@ class MarkdownFilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Markdown(data: File(path).readAsStringSync());
+    return Markdown(
+      data: File(path).readAsStringSync(),
+      //selectable: true,
+      styleSheet: MarkdownStyleSheet(textScaleFactor: 1.25),
+    );
   }
 }
