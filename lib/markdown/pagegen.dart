@@ -1,8 +1,9 @@
 import 'dart:io';
 
-import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+
+import '../main.dart';
 
 class MarkdownFilePage extends StatelessWidget {
   final String path;
@@ -13,7 +14,12 @@ class MarkdownFilePage extends StatelessWidget {
     return Markdown(
       data: File(path).readAsStringSync(),
       //selectable: true,
-      styleSheet: MarkdownStyleSheet(textScaleFactor: 1.25),
+      styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
+        textScaleFactor: 1.2,
+        h1: const TextStyle(fontFamily: globalFontFamily),
+        a: const TextStyle(fontFamily: globalFontFamily),
+        p: const TextStyle(fontFamily: globalFontFamily),
+      ),
     );
   }
 }

@@ -6,7 +6,8 @@ import 'package:bitsdojo_window/bitsdojo_window.dart';
 
 import 'package:rosa/markdown/pagegen.dart';
 
-const localizationPath = 'asset/i18n/zh_cn/';
+const localizationPath = 'rosa_Data/i18n/zh_cn/';
+const globalFontFamily = 'BoldHans';
 
 void main() {
   runApp(
@@ -57,13 +58,13 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return FluentApp(
         theme: FluentThemeData(
-            fontFamily: "aPoppins",
+            fontFamily: globalFontFamily,
             brightness: Brightness.light,
             accentColor: SystemTheme.accentColor.accent.toAccentColor(),
             iconTheme:
                 IconThemeData(size: 24, color: SystemTheme.accentColor.accent)),
         darkTheme: FluentThemeData(
-            fontFamily: "aPoppins",
+            fontFamily: globalFontFamily,
             brightness: Brightness.dark,
             accentColor: SystemTheme.accentColor.accent.toAccentColor(),
             iconTheme:
