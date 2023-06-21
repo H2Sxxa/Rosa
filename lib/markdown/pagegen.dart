@@ -5,21 +5,36 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 
 import 'package:rosa/config/json.dart';
 
-class MarkdownFilePage extends StatelessWidget {
+class MarkdownFileBuilder extends StatelessWidget {
   final String path;
-  const MarkdownFilePage({required this.path, super.key});
+  final bool ispage;
+  const MarkdownFileBuilder(
+      {required this.path, required this.ispage, super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Markdown(
-      data: File(path).readAsStringSync(),
-      //selectable: true,
-      styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
-        textScaleFactor: 1.2,
-        h1: TextStyle(fontFamily: getJsonValue("fontfamily")),
-        a: TextStyle(fontFamily: getJsonValue("fontfamily")),
-        p: TextStyle(fontFamily: getJsonValue("fontfamily")),
-      ),
-    );
+    if (ispage) {
+      return Markdown(
+        data: File(path).readAsStringSync(),
+        //selectable: true,
+        styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
+          textScaleFactor: 1.2,
+          h1: TextStyle(fontFamily: getJsonValue("fontfamily")),
+          a: TextStyle(fontFamily: getJsonValue("fontfamily")),
+          p: TextStyle(fontFamily: getJsonValue("fontfamily")),
+        ),
+      );
+    } else {
+      return MarkdownBody(
+        data: File(path).readAsStringSync(),
+        //selectable: true,
+        styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
+          textScaleFactor: 1.2,
+          h1: TextStyle(fontFamily: getJsonValue("fontfamily")),
+          a: TextStyle(fontFamily: getJsonValue("fontfamily")),
+          p: TextStyle(fontFamily: getJsonValue("fontfamily")),
+        ),
+      );
+    }
   }
 }

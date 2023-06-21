@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:rosa/config/json.dart';
 import 'package:system_theme/system_theme.dart';
@@ -10,13 +8,17 @@ import 'package:rosa/markdown/pagegen.dart';
 import 'config/i18n.dart';
 
 void main() {
-  initJsonMap({"localization": "zh_cn", "fontfamily": "BoldHans"});
+  initJsonMap({
+    "localization": "zh_cn",
+    "fontfamily": "BoldHans",
+    "title": "ROSA - Setup the dev environment"
+  });
   runApp(
     const MyApp(),
   );
   doWhenWindowReady(() {
     final win = appWindow;
-    win.title = "ROSA - Setup the dev environment";
+    win.title = getJsonValue("title");
     win.alignment = Alignment.center;
     win.minSize = const Size(600, 450);
     win.show();
@@ -36,23 +38,22 @@ class _MyAppState extends State<MyApp> {
   int _pageindex = 0;
 
   final pages = [
-    MarkdownFilePage(path: "${getI18nfullPath()}md/home.md"),
+    MarkdownFileBuilder(
+      path: "${getI18nfullPath()}md/home.md",
+      ispage: true,
+    ),
     const Text("Page 2"),
     const Text("Page 3"),
     const Text("Page 4"),
-    ContentDialog(
-      title: const Text('EXIT WARNING'),
-      content: Text(
-        'The unfinalished works will be lost',
-        style: TextStyle(color: Colors.red),
-      ),
-      actions: [
-        FilledButton(
-          onPressed: () => exit(0),
-          child: const Text('Exit'),
-        ),
-      ],
-    ),
+    ScaffoldPage.scrollable(
+        //header: const PageHeader(title: Text('Button')),
+        children: [
+          MarkdownFileBuilder(
+            path: "${getI18nfullPath()}md/license.md",
+            ispage: false,
+          ),
+          FilledButton(child: const Text("Github"), onPressed: () => {}),
+        ])
   ];
 
   @override
@@ -99,12 +100,13 @@ class _MyAppState extends State<MyApp> {
               ],
               footerItems: [
                 PaneItem(
-                    icon: const Icon(FluentIcons.settings),
-                    title: const Text("Settings"),
-                    body: const SizedBox.shrink()),
+                  icon: const Icon(FluentIcons.settings),
+                  title: const Text("Settings"),
+                  body: const SizedBox.shrink(),
+                ),
                 PaneItem(
-                    icon: const Icon(FluentIcons.leave),
-                    title: const Text("Exit"),
+                    icon: const Icon(FluentIcons.git_graph),
+                    title: const Text("Source Code"),
                     body: const SizedBox.shrink())
               ]),
         ));
