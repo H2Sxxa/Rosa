@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
-import '../main.dart';
+import 'package:rosa/config/json.dart';
 
 class MarkdownFilePage extends StatelessWidget {
   final String path;
@@ -16,9 +16,9 @@ class MarkdownFilePage extends StatelessWidget {
       //selectable: true,
       styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
         textScaleFactor: 1.2,
-        h1: const TextStyle(fontFamily: globalFontFamily),
-        a: const TextStyle(fontFamily: globalFontFamily),
-        p: const TextStyle(fontFamily: globalFontFamily),
+        h1: TextStyle(fontFamily: getJsonValue("fontfamily")),
+        a: TextStyle(fontFamily: getJsonValue("fontfamily")),
+        p: TextStyle(fontFamily: getJsonValue("fontfamily")),
       ),
     );
   }

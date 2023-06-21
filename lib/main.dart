@@ -1,15 +1,16 @@
 import 'dart:io';
 
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:rosa/config/json.dart';
 import 'package:system_theme/system_theme.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 
 import 'package:rosa/markdown/pagegen.dart';
 
-const localizationPath = 'rosa_Data/i18n/zh_cn/';
-const globalFontFamily = 'BoldHans';
+import 'config/i18n.dart';
 
 void main() {
+  initJsonMap({"localization": "zh_cn", "fontfamily": "BoldHans"});
   runApp(
     const MyApp(),
   );
@@ -35,7 +36,7 @@ class _MyAppState extends State<MyApp> {
   int _pageindex = 0;
 
   final pages = [
-    const MarkdownFilePage(path: "${localizationPath}md/home.md"),
+    MarkdownFilePage(path: "${getI18nfullPath()}md/home.md"),
     const Text("Page 2"),
     const Text("Page 3"),
     const Text("Page 4"),
@@ -58,13 +59,13 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return FluentApp(
         theme: FluentThemeData(
-            fontFamily: globalFontFamily,
+            fontFamily: getJsonValue("fontfamily"),
             brightness: Brightness.light,
             accentColor: SystemTheme.accentColor.accent.toAccentColor(),
             iconTheme:
                 IconThemeData(size: 24, color: SystemTheme.accentColor.accent)),
         darkTheme: FluentThemeData(
-            fontFamily: globalFontFamily,
+            fontFamily: getJsonValue("fontfamily"),
             brightness: Brightness.dark,
             accentColor: SystemTheme.accentColor.accent.toAccentColor(),
             iconTheme:
