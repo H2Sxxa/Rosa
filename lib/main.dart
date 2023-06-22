@@ -8,12 +8,19 @@ import 'package:rosa/markdown/pagegen.dart';
 import 'config/i18n.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
   initJsonMap({
     "localization": "zh_cn",
     "fontfamily": "BoldHans",
     "title": "ROSA - Setup the dev environment"
   });
+  initTranslation({
+    "home": "主页",
+    "about": "关于",
+    "settings": "设置",
+    "sticky": "粘贴板",
+    "tookit": "工具箱"
+  });
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     const MyApp(),
   );
@@ -63,9 +70,7 @@ class _MyAppState extends State<MyApp> {
                       onPressed: open, child: const Text("Github"));
                 },
               ),
-              const SizedBox(
-                width: 50,
-              ),
+              const Expanded(child: SizedBox()),
               Link(
                 // from the url_launcher package
                 uri: Uri.parse('https://h2sxxa.github.io'),
@@ -74,9 +79,7 @@ class _MyAppState extends State<MyApp> {
                       onPressed: open, child: const Text("H2Sxxa's Blog"));
                 },
               ),
-              const SizedBox(
-                width: 50,
-              ),
+              const Expanded(child: SizedBox()),
               Link(
                 // from the url_launcher package
                 uri: Uri.parse('https://space.bilibili.com/393570351'),
@@ -84,7 +87,8 @@ class _MyAppState extends State<MyApp> {
                   return FilledButton(
                       onPressed: open, child: const Text("BiliBili"));
                 },
-              )
+              ),
+              const Expanded(child: SizedBox()),
             ],
           ),
         ])
@@ -117,30 +121,30 @@ class _MyAppState extends State<MyApp> {
               items: [
                 PaneItem(
                   icon: const Icon(FluentIcons.home),
-                  title: const Text("Home"),
+                  title: Text(getTranslation("home")),
                   body: const SizedBox.shrink(),
                 ),
                 PaneItemHeader(header: const Text('Setup')),
                 PaneItem(
                   icon: const Icon(FluentIcons.toolbox),
-                  title: const Text("Toolkit"),
+                  title: Text(getTranslation("tookit")),
                   body: const SizedBox.shrink(),
                 ),
                 PaneItem(
                   icon: const Icon(FluentIcons.sticky_notes_outline_app_icon),
-                  title: const Text("Sticky board"),
+                  title: Text(getTranslation("sticky")),
                   body: const SizedBox.shrink(),
                 )
               ],
               footerItems: [
                 PaneItem(
                   icon: const Icon(FluentIcons.settings),
-                  title: const Text("Settings"),
+                  title: Text(getTranslation("settings")),
                   body: const SizedBox.shrink(),
                 ),
                 PaneItem(
                     icon: const Icon(FluentIcons.accounts),
-                    title: const Text("About"),
+                    title: Text(getTranslation("about")),
                     body: const SizedBox.shrink())
               ]),
         ));

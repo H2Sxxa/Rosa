@@ -20,6 +20,11 @@ class MarkdownFileBuilder extends StatelessWidget {
         styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
           textScaleFactor: 1.2,
           h1: TextStyle(fontFamily: getJsonValue("fontfamily")),
+          h2: TextStyle(fontFamily: getJsonValue("fontfamily")),
+          h3: TextStyle(fontFamily: getJsonValue("fontfamily")),
+          h4: TextStyle(fontFamily: getJsonValue("fontfamily")),
+          h5: TextStyle(fontFamily: getJsonValue("fontfamily")),
+          h6: TextStyle(fontFamily: getJsonValue("fontfamily")),
           a: TextStyle(fontFamily: getJsonValue("fontfamily")),
           p: TextStyle(fontFamily: getJsonValue("fontfamily")),
         ),
@@ -31,6 +36,11 @@ class MarkdownFileBuilder extends StatelessWidget {
         styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
           textScaleFactor: 1.2,
           h1: TextStyle(fontFamily: getJsonValue("fontfamily")),
+          h2: TextStyle(fontFamily: getJsonValue("fontfamily")),
+          h3: TextStyle(fontFamily: getJsonValue("fontfamily")),
+          h4: TextStyle(fontFamily: getJsonValue("fontfamily")),
+          h5: TextStyle(fontFamily: getJsonValue("fontfamily")),
+          h6: TextStyle(fontFamily: getJsonValue("fontfamily")),
           a: TextStyle(fontFamily: getJsonValue("fontfamily")),
           p: TextStyle(fontFamily: getJsonValue("fontfamily")),
         ),
