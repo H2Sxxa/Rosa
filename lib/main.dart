@@ -1,11 +1,8 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:rosa/config/json.dart';
+import 'package:rosa/pages/pages.dart';
 import 'package:system_theme/system_theme.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
-import 'package:url_launcher/link.dart';
-
-import 'package:rosa/markdown/pagegen.dart';
-import 'config/i18n.dart';
 
 void main() {
   initJsonMap({
@@ -18,7 +15,8 @@ void main() {
     "about": "关于",
     "settings": "设置",
     "sticky": "粘贴板",
-    "tookit": "工具箱"
+    "tookit": "工具箱",
+    "doc": "文档"
   });
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
@@ -46,52 +44,11 @@ class _MyAppState extends State<MyApp> {
   int _pageindex = 0;
 
   final pages = [
-    MarkdownFileBuilder(
-      path: "${getI18nfullPath()}md/home.md",
-      ispage: true,
-    ),
+    pageHome,
+    const Text("Page 1"),
+    pageStickyBoard,
     const Text("Page 2"),
-    const Text("Page 3"),
-    const Text("Page 4"),
-    ScaffoldPage.scrollable(
-        //header: const PageHeader(title: Text('Button')),
-        children: [
-          MarkdownFileBuilder(
-            path: "${getI18nfullPath()}md/license.md",
-            ispage: false,
-          ),
-          Row(
-            children: [
-              Link(
-                // from the url_launcher package
-                uri: Uri.parse('https://github.com/H2Sxxa/Rosa'),
-                builder: (_, open) {
-                  return FilledButton(
-                      onPressed: open, child: const Text("Github"));
-                },
-              ),
-              const Expanded(child: SizedBox()),
-              Link(
-                // from the url_launcher package
-                uri: Uri.parse('https://h2sxxa.github.io'),
-                builder: (_, open) {
-                  return FilledButton(
-                      onPressed: open, child: const Text("H2Sxxa's Blog"));
-                },
-              ),
-              const Expanded(child: SizedBox()),
-              Link(
-                // from the url_launcher package
-                uri: Uri.parse('https://space.bilibili.com/393570351'),
-                builder: (_, open) {
-                  return FilledButton(
-                      onPressed: open, child: const Text("BiliBili"));
-                },
-              ),
-              const Expanded(child: SizedBox()),
-            ],
-          ),
-        ])
+    pageAbout
   ];
 
   @override
@@ -124,17 +81,18 @@ class _MyAppState extends State<MyApp> {
                   title: Text(getTranslation("home")),
                   body: const SizedBox.shrink(),
                 ),
-                PaneItemHeader(header: const Text('Setup')),
+                PaneItemHeader(header: Text(getTranslation("tookit"))),
                 PaneItem(
                   icon: const Icon(FluentIcons.toolbox),
-                  title: Text(getTranslation("tookit")),
+                  title: const Text("Proxifier & Shadowsocks"),
                   body: const SizedBox.shrink(),
                 ),
                 PaneItem(
                   icon: const Icon(FluentIcons.sticky_notes_outline_app_icon),
                   title: Text(getTranslation("sticky")),
                   body: const SizedBox.shrink(),
-                )
+                ),
+                PaneItemHeader(header: Text(getTranslation("doc")))
               ],
               footerItems: [
                 PaneItem(
