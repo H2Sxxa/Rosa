@@ -38,6 +38,7 @@ dependencies:
   system_theme: ^2.2.0
   bitsdojo_window: ^0.1.5
   flutter_markdown: ^0.6.15
+  url_launcher: ^6.1.11
 
 dev_dependencies:
   flutter_test:

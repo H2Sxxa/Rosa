@@ -2,12 +2,13 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:rosa/config/json.dart';
 import 'package:system_theme/system_theme.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
+import 'package:url_launcher/link.dart';
 
 import 'package:rosa/markdown/pagegen.dart';
-
 import 'config/i18n.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   initJsonMap({
     "localization": "zh_cn",
     "fontfamily": "BoldHans",
@@ -52,7 +53,40 @@ class _MyAppState extends State<MyApp> {
             path: "${getI18nfullPath()}md/license.md",
             ispage: false,
           ),
-          FilledButton(child: const Text("Github"), onPressed: () => {}),
+          Row(
+            children: [
+              Link(
+                // from the url_launcher package
+                uri: Uri.parse('https://github.com/H2Sxxa/Rosa'),
+                builder: (_, open) {
+                  return FilledButton(
+                      onPressed: open, child: const Text("Github"));
+                },
+              ),
+              const SizedBox(
+                width: 50,
+              ),
+              Link(
+                // from the url_launcher package
+                uri: Uri.parse('https://h2sxxa.github.io'),
+                builder: (_, open) {
+                  return FilledButton(
+                      onPressed: open, child: const Text("H2Sxxa's Blog"));
+                },
+              ),
+              const SizedBox(
+                width: 50,
+              ),
+              Link(
+                // from the url_launcher package
+                uri: Uri.parse('https://space.bilibili.com/393570351'),
+                builder: (_, open) {
+                  return FilledButton(
+                      onPressed: open, child: const Text("BiliBili"));
+                },
+              )
+            ],
+          ),
         ])
   ];
 
@@ -105,8 +139,8 @@ class _MyAppState extends State<MyApp> {
                   body: const SizedBox.shrink(),
                 ),
                 PaneItem(
-                    icon: const Icon(FluentIcons.git_graph),
-                    title: const Text("Source Code"),
+                    icon: const Icon(FluentIcons.accounts),
+                    title: const Text("About"),
                     body: const SizedBox.shrink())
               ]),
         ));
