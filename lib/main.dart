@@ -14,9 +14,11 @@ void main() {
     "home": "主页",
     "about": "关于",
     "settings": "设置",
-    "sticky": "粘贴板",
+    "pastebin": "粘贴板",
     "tookit": "工具箱",
-    "doc": "文档"
+    "doc": "文档",
+    "upload_text":"上传文本",
+    "upload_file":"上传文件"
   });
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
@@ -33,8 +35,6 @@ void main() {
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-
-
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
   final pages = [
     pageHome,
     const Text("Page 1"),
-    pageStickyBoard,
+    pagePastebin,
     const Text("Page 2"),
     pageAbout
   ];
@@ -93,8 +93,8 @@ class _MyAppState extends State<MyApp> {
                   body: const SizedBox.shrink(),
                 ),
                 PaneItem(
-                  icon: const Icon(FluentIcons.sticky_notes_outline_app_icon),
-                  title: Text(getTranslation("sticky")),
+                  icon: const Icon(FluentIcons.paste),
+                  title: Text(getTranslation("pastebin")),
                   body: const SizedBox.shrink(),
                 ),
                 PaneItemHeader(header: Text(getTranslation("doc")))

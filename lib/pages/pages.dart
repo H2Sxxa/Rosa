@@ -1,4 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:rosa/config/json.dart';
 import 'package:rosa/pages/widgets/prompts.dart';
 
 import '../config/i18n.dart';
@@ -15,9 +16,9 @@ var pageAbout = MarkdownFileBuilder(
 );
 
 var _uploadtext = '';
-var pageStickyBoard = ScaffoldPage.scrollable(children: [
+var pagePastebin = ScaffoldPage.scrollable(children: [
   MarkdownFileBuilder(
-      path: "${getI18nfullPath()}md/stickboard.md", ispage: false),
+      path: "${getI18nfullPath()}md/pastebin.md", ispage: false),
   const SizedBox(
     height: 20,
   ),
@@ -31,18 +32,19 @@ var pageStickyBoard = ScaffoldPage.scrollable(children: [
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           FilledButton(
-              child: const Text("Upload Text"),
+              child: Text(getTranslation("upload_text")),
               onPressed: () async {
                 debugPrint(_uploadtext);
                 var result = await showConfirmDialog(
                     "Notice not to upload too frequent");
                 if (result) {
-                  debugPrint("true");
-                } else {
-                  debugPrint("false");
+                  showConDialog(
+                      const Card(child: SelectableText("https://api.mclo.gs/")),
+                      "Feedback");
                 }
               }),
-          FilledButton(child: const Text("Upload File"), onPressed: () {})
+          FilledButton(
+              child: Text(getTranslation("upload_file")), onPressed: () {})
         ],
       ),
       TextBox(
