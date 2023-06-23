@@ -31,6 +31,8 @@ void main() {
   });
 }
 
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
@@ -54,6 +56,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return FluentApp(
+        navigatorKey: navigatorKey,
         theme: FluentThemeData(
             fontFamily: getJsonValue("fontfamily"),
             brightness: Brightness.light,
