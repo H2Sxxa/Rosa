@@ -1,6 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:rosa/main.dart';
-import 'package:rosa/pages/widgets/dialog.dart';
+import 'package:rosa/pages/widgets/prompts.dart';
 
 import '../config/i18n.dart';
 import 'markdown/pagegen.dart';
@@ -33,9 +32,15 @@ var pageStickyBoard = ScaffoldPage.scrollable(children: [
         children: [
           FilledButton(
               child: const Text("Upload Text"),
-              onPressed: () {
+              onPressed: () async {
                 debugPrint(_uploadtext);
-                showContentDialog(navigatorKey.currentState!.context);
+                var result = await showConfirmDialog(
+                    "Notice not to upload too frequent");
+                if (result) {
+                  debugPrint("true");
+                } else {
+                  debugPrint("false");
+                }
               }),
           FilledButton(child: const Text("Upload File"), onPressed: () {})
         ],
