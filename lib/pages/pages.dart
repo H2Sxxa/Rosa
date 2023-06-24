@@ -16,6 +16,10 @@ var pageAbout = MarkdownFileBuilder(
   ispage: true,
 );
 
+var docHTSetup = MarkdownFileBuilder(
+  path: "${getI18nfullPath()}md/htsetup.md",
+  ispage: true,
+);
 var _uploadtext = '';
 var pagePastebin = ScaffoldPage.scrollable(children: [
   MarkdownFileBuilder(

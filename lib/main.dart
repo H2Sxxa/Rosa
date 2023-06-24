@@ -17,8 +17,9 @@ void main() {
     "pastebin": "粘贴板",
     "tookit": "工具箱",
     "doc": "文档",
-    "upload_text":"上传文本",
-    "upload_file":"上传文件"
+    "htsetup": "如何正确代理来加速构建环境",
+    "upload_text": "上传文本",
+    "upload_file": "上传文件"
   });
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
@@ -51,6 +52,7 @@ class _MyAppState extends State<MyApp> {
     pageHome,
     const Text("Page 1"),
     pagePastebin,
+    docHTSetup,
     const Text("Page 2"),
     pageAbout
   ];
@@ -97,7 +99,11 @@ class _MyAppState extends State<MyApp> {
                   title: Text(getTranslation("pastebin")),
                   body: const SizedBox.shrink(),
                 ),
-                PaneItemHeader(header: Text(getTranslation("doc")))
+                PaneItemHeader(header: Text(getTranslation("doc"))),
+                PaneItem(
+                    icon: const Icon(FluentIcons.book_answers),
+                    title: Text(getTranslation("htsetup")),
+                    body: const SizedBox.shrink())
               ],
               footerItems: [
                 PaneItem(
@@ -108,7 +114,7 @@ class _MyAppState extends State<MyApp> {
                 PaneItem(
                     icon: const Icon(FluentIcons.accounts),
                     title: Text(getTranslation("about")),
-                    body: const SizedBox.shrink())
+                    body: const SizedBox.shrink()),
               ]),
         ));
   }
