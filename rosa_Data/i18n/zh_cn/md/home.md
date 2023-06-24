@@ -7,6 +7,8 @@
 
 许多新人Modder在开发时常常会遇到很多环境上的问题，这也是ROSA诞生的契机
 
+ROSA是完全免费开源的，如果你的ROSA是买来的，那你一定被骗了
+
 先前的MCRS(MCreator Setup)在解决环境构建问题上略有成效，但由于我写的Python库Remilia迎来了次世代破坏性重写升级，以及MCRS一些本身不可抗的缺陷，MCRS永久进入停止维护状态
 
 停止维护期间，我曾想使用Rust(tui/tauri)来写这么一个新的MCRS，但因为我完全不懂JS，TS那一套东西，我选择了放弃，直到我看到Flutter......于是ROSA就诞生了

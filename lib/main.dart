@@ -50,10 +50,10 @@ class _MyAppState extends State<MyApp> {
 
   final pages = [
     pageHome,
-    const Text("Page 1"),
+    pageProxy,
     pagePastebin,
     docHTSetup,
-    const Text("Page 2"),
+    const Text("WIP"),
     pageAbout
   ];
 

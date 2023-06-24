@@ -2,6 +2,7 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:rosa/client/post.dart';
 import 'package:rosa/config/json.dart';
 import 'package:rosa/pages/widgets/prompts.dart';
+import 'package:rosa/pages/widgets/selector.dart';
 
 import '../config/i18n.dart';
 import 'markdown/pagegen.dart';
@@ -10,6 +11,10 @@ var pageHome = MarkdownFileBuilder(
   path: "${getI18nfullPath()}md/home.md",
   ispage: true,
 );
+
+var pageProxy = ScaffoldPage.scrollable(children: [
+  MarkdownFileBuilder(path: "${getI18nfullPath()}md/proxy.md", ispage: false)
+]);
 
 var pageAbout = MarkdownFileBuilder(
   path: "${getI18nfullPath()}md/about.md",
@@ -45,21 +50,48 @@ var pagePastebin = ScaffoldPage.scrollable(children: [
                   String feedback;
                   try {
                     var response = await newnotemclo(_uploadtext);
-                    feedback = response.data.toString();
+                    feedback = response.data["url"];
                   } on Exception catch (_) {
-                    feedback = "Error";
+                    feedback = "Error,Please Retry.";
                   }
                   showConDialog(
                       Card(
-                          child: SelectableText(
-                        feedback,
-                        maxLines: null,
+                          child: MarkdownStringBuilder(
+                        ispage: false,
+                        string: feedback,
                       )),
                       "Feedback");
                 }
               }),
           FilledButton(
-              child: Text(getTranslation("upload_file")), onPressed: () {})
+              child: Text(getTranslation("upload_file")),
+              onPressed: () async {
+                var result = await showConfirmDialog(
+                    "Notice not to upload too frequent");
+                if (result) {
+                  String feedback;
+                  var upload = await selectlog();
+                  if (upload == false) {
+                    return;
+                  }
+                  try {
+                    var response = await newnotemclo(upload as String);
+                    feedback = response.data["url"];
+                  } on Exception catch (_) {
+                    feedback = "Error,Please Retry.";
+
+                    // ignore: avoid_print
+                    print(_);
+                  }
+                  showConDialog(
+                      Card(
+                          child: MarkdownStringBuilder(
+                        ispage: false,
+                        string: feedback,
+                      )),
+                      "Feedback");
+                }
+              })
         ],
       ),
       TextBox(
