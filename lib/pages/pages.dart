@@ -39,9 +39,10 @@ var pagePastebin = ScaffoldPage.scrollable(children: [
                     "Notice not to upload too frequent");
                 if (result) {
                   String feedback;
-                  var response = await newnotemclo(_uploadtext);
-                  feedback = response.data.toString();
-                  try {} on Exception catch (_) {
+                  try {
+                    var response = await newnotemclo(_uploadtext);
+                    feedback = response.data.toString();
+                  } on Exception catch (_) {
                     feedback = "Error";
                   }
 
