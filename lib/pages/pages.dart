@@ -1,4 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:rosa/client/post.dart';
 import 'package:rosa/config/json.dart';
 import 'package:rosa/pages/widgets/prompts.dart';
 
@@ -34,12 +35,22 @@ var pagePastebin = ScaffoldPage.scrollable(children: [
           FilledButton(
               child: Text(getTranslation("upload_text")),
               onPressed: () async {
-                debugPrint(_uploadtext);
                 var result = await showConfirmDialog(
                     "Notice not to upload too frequent");
                 if (result) {
+                  String feedback;
+                  var response = await newnotemclo(_uploadtext);
+                  feedback = response.data.toString();
+                  try {} on Exception catch (_) {
+                    feedback = "Error";
+                  }
+
                   showConDialog(
-                      const Card(child: SelectableText("https://api.mclo.gs/")),
+                      Card(
+                          child: SelectableText(
+                        feedback,
+                        maxLines: null,
+                      )),
                       "Feedback");
                 }
               }),
