@@ -6,6 +6,16 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:rosa/config/json.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
+void launchLinkfromString(String text, String? href) async {
+  try {
+    await launchUrlString(text);
+  } on Exception catch (_) {
+    try {
+      await launchUrlString(href!);
+    } on Exception catch (_) {}
+  }
+}
+
 class MarkdownFileBuilder extends StatelessWidget {
   final String path;
   final bool ispage;
@@ -44,19 +54,14 @@ class MarkdownStringBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     if (ispage) {
       return Markdown(
-        data: string,
-        //selectable: true,
-        styleSheet: getTheme(context)
-      );
+          onTapLink: (text, href, title) => launchLinkfromString(text, href),
+          data: string,
+          styleSheet: getTheme(context));
     } else {
       return MarkdownBody(
-        onTapLink: (url, string, str) {
-          launchUrlString(url);
-        },
-        data: string,
-        //selectable: true,
-        styleSheet: getTheme(context)
-      );
+          onTapLink: (text, href, title) => launchLinkfromString(text, href),
+          data: string,
+          styleSheet: getTheme(context));
     }
   }
 }

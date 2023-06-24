@@ -45,7 +45,6 @@ var pagePastebin = ScaffoldPage.scrollable(children: [
                   } on Exception catch (_) {
                     feedback = "Error";
                   }
-
                   showConDialog(
                       Card(
                           child: SelectableText(
