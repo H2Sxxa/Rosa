@@ -13,7 +13,10 @@ var pageHome = MarkdownFileBuilder(
 );
 
 var pageProxy = ScaffoldPage.scrollable(children: [
-  MarkdownFileBuilder(path: "${getI18nfullPath()}md/proxy.md", ispage: false)
+  MarkdownFileBuilder(path: "${getI18nfullPath()}md/proxy.md", ispage: false),
+  TreeView(
+      selectionMode: TreeViewSelectionMode.multiple,
+      items: [TreeViewItem(content: Text("hello"), value: "hello")])
 ]);
 
 var pageAbout = MarkdownFileBuilder(
