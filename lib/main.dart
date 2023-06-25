@@ -55,7 +55,7 @@ class _MyAppState extends State<MyApp> {
     pagePastebin,
     pageDownload,
     docHTSetup,
-    const Text("W.I.P."),
+    pageSettings,
     pageAbout
   ];
 

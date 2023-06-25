@@ -14,15 +14,40 @@ var pageHome = MarkdownFileBuilder(
 
 var pageProxy = ScaffoldPage.scrollable(children: [
   MarkdownFileBuilder(path: "${getI18nfullPath()}md/proxy.md", ispage: false),
-  TreeView(
-      selectionMode: TreeViewSelectionMode.multiple,
-      items: [TreeViewItem(content: const Text("hello"), value: "hello")]),
+  TreeView(selectionMode: TreeViewSelectionMode.multiple, items: [
+    TreeViewItem(content: const Text("Proxifier"), value: "p0", children: [
+      TreeViewItem(content: const Text("Install"), value: "p1"),
+      TreeViewItem(content: const Text("register"), value: "p2"),
+      TreeViewItem(content: const Text("Start"), value: "p3"),
+      TreeViewItem(content: const Text("Import setting"), value: "p4"),
+    ]),
+    TreeViewItem(content: const Text("Shadowsocks"), value: "s0", children: [
+      TreeViewItem(content: const Text("Install"), value: "s1"),
+      TreeViewItem(content: const Text("Start"), value: "s2")
+    ]),
+  ]),
   FilledButton(child: const Text("Run it!"), onPressed: () {})
 ]);
 
+var _jdks = [];
 var pageDownload = ScaffoldPage.scrollable(children: [
   MarkdownFileBuilder(
       path: "${getI18nfullPath()}md/download/part0.md", ispage: false),
+  TreeView(
+      selectionMode: TreeViewSelectionMode.multiple,
+      onSelectionChanged: (selectedItems) async {
+        _jdks = [];
+        for (var i in selectedItems) {
+          _jdks.add(i.value);
+        }
+      },
+      items: [
+        TreeViewItem(content: const Text("JDK"), value: "0", children: [
+          TreeViewItem(content: const Text("JDK 17"), value: "17"),
+          TreeViewItem(content: const Text("JDK 11"), value: "11"),
+          TreeViewItem(content: const Text("JDK 8"), value: "8")
+        ])
+      ])
 ]);
 
 var pageAbout = MarkdownFileBuilder(
@@ -34,6 +59,7 @@ var docHTSetup = MarkdownFileBuilder(
   path: "${getI18nfullPath()}md/htsetup.md",
   ispage: true,
 );
+
 var _uploadtext = '';
 var pagePastebin = ScaffoldPage.scrollable(children: [
   MarkdownFileBuilder(
@@ -113,7 +139,7 @@ var pagePastebin = ScaffoldPage.scrollable(children: [
   )),
 ]);
 
-var pageSetting = ScaffoldPage.scrollable(children: [
+var pageSettings = ScaffoldPage.scrollable(children: [
   MarkdownFileBuilder(
       path: "${getI18nfullPath()}md/settings/part0.md", ispage: false),
 ]);
