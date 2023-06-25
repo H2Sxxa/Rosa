@@ -16,7 +16,13 @@ var pageProxy = ScaffoldPage.scrollable(children: [
   MarkdownFileBuilder(path: "${getI18nfullPath()}md/proxy.md", ispage: false),
   TreeView(
       selectionMode: TreeViewSelectionMode.multiple,
-      items: [TreeViewItem(content: Text("hello"), value: "hello")])
+      items: [TreeViewItem(content: const Text("hello"), value: "hello")]),
+  FilledButton(child: const Text("Run it!"), onPressed: () {})
+]);
+
+var pageDownload = ScaffoldPage.scrollable(children: [
+  MarkdownFileBuilder(
+      path: "${getI18nfullPath()}md/download/part0.md", ispage: false),
 ]);
 
 var pageAbout = MarkdownFileBuilder(
@@ -105,4 +111,9 @@ var pagePastebin = ScaffoldPage.scrollable(children: [
       ),
     ],
   )),
+]);
+
+var pageSetting = ScaffoldPage.scrollable(children: [
+  MarkdownFileBuilder(
+      path: "${getI18nfullPath()}md/settings/part0.md", ispage: false),
 ]);

@@ -16,6 +16,7 @@ void main() {
     "settings": "设置",
     "pastebin": "粘贴板",
     "tookit": "工具箱",
+    "download": "下载",
     "doc": "文档",
     "htsetup": "如何正确代理来加速构建环境",
     "upload_text": "上传文本",
@@ -52,8 +53,9 @@ class _MyAppState extends State<MyApp> {
     pageHome,
     pageProxy,
     pagePastebin,
+    pageDownload,
     docHTSetup,
-    const Text("WIP"),
+    const Text("W.I.P."),
     pageAbout
   ];
 
@@ -99,6 +101,10 @@ class _MyAppState extends State<MyApp> {
                   title: Text(getTranslation("pastebin")),
                   body: const SizedBox.shrink(),
                 ),
+                PaneItem(
+                    title: Text(getTranslation("download")),
+                    icon: const Icon(FluentIcons.download),
+                    body: const SizedBox.shrink()),
                 PaneItemHeader(header: Text(getTranslation("doc"))),
                 PaneItem(
                     icon: const Icon(FluentIcons.book_answers),
