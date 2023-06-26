@@ -44,7 +44,7 @@ var pageDownload = ScaffoldPage.scrollable(children: [
       items: [
         TreeViewItem(content: const Text("JDK"), value: "0", children: [
           TreeViewItem(content: const Text("JDK 17"), value: "17"),
-          TreeViewItem(content: const Text("JDK 11"), value: "11"),
+          TreeViewItem(content: const Text("JDK 16"), value: "16"),
           TreeViewItem(content: const Text("JDK 8"), value: "8")
         ])
       ])

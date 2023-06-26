@@ -1,27 +1,12 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:rosa/config/init.dart';
 import 'package:rosa/config/json.dart';
 import 'package:rosa/pages/pages.dart';
 import 'package:system_theme/system_theme.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 
 void main() {
-  initJsonMap({
-    "localization": "zh_cn",
-    "fontfamily": "BoldHans",
-    "title": "ROSA - Setup the dev environment"
-  });
-  initTranslation({
-    "home": "主页",
-    "about": "关于",
-    "settings": "设置",
-    "pastebin": "粘贴板",
-    "tookit": "工具箱",
-    "download": "下载",
-    "doc": "文档",
-    "htsetup": "如何正确代理来加速构建环境",
-    "upload_text": "上传文本",
-    "upload_file": "上传文件"
-  });
+  initConfig();
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     const MyApp(),

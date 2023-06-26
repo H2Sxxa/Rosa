@@ -33,3 +33,18 @@ dynamic getTranslation(String key) {
   File file = File(getTranslatePath());
   return jsonDecode(file.readAsStringSync())[key];
 }
+
+Map initManifestMap(Map initdata) {
+  File file = File(manifestPath);
+  if (file.existsSync()) {
+    return jsonDecode(file.readAsStringSync());
+  } else {
+    file.writeAsStringSync(jsonEncode(initdata));
+    return initdata;
+  }
+}
+
+dynamic getManifest(String key) {
+  File file = File(manifestPath);
+  return jsonDecode(file.readAsStringSync())[key];
+}
