@@ -1,3 +1,4 @@
+import 'package:rosa/client/get.dart';
 import 'package:win32_registry/win32_registry.dart';
 
 void registProxifier() {
@@ -17,5 +18,33 @@ void registProxifier() {
         "Key", RegistryValueType.string, "5EZ8G-C3WL5-B56YG-SCXM9-6QZAP");
     point.createValue(owner);
     point.createValue(key);
+  }
+}
+
+void runProxyTasks(List<String> ptasks, List<String> stasks) async {
+  for (var ptaskname in ptasks) {
+    switch (ptaskname) {
+      case "p1":
+        getfile("uri", "path");
+        break;
+      case "p2":
+        registProxifier();
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  for (var staskname in ptasks) {
+    switch (staskname) {
+      case "s1":
+        getfile("uri", "path");
+        break;
+      case "s2":
+        break;
+      default:
+        break;
+    }
   }
 }
