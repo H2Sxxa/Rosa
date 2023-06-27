@@ -1,12 +1,10 @@
 import 'dart:io';
 
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:open_file/open_file.dart';
 import 'package:rosa/client/get.dart';
 import 'package:rosa/pages/widgets/prompts.dart';
 import 'package:win32_registry/win32_registry.dart';
 import 'package:archive/archive_io.dart';
-
 
 void unzip(String path, String out) {
   final bytes = File(path).readAsBytesSync();
@@ -60,12 +58,10 @@ void runProxyTasks(List<String> tasks) async {
     switch (taskname) {
       case "psi":
         {
-          if (!File("rosa_Data/bin/proxy.zip").existsSync()) {
-            getfile(
-                getGithubStuffUri(
-                    "https://github.com/H2Sxxa/Rosa/blob/bin/application/proxy.zip"),
-                "rosa_Data/bin/proxy.zip");
-          }
+          getfile(
+              getGithubStuffUri(
+                  "https://github.com/H2Sxxa/Rosa/blob/bin/application/proxy.zip"),
+              "rosa_Data/bin/proxy.zip");
           unzip("rosa_Data/bin/proxy.zip", "rosa_Data/bin/");
           Process.runSync(
               "start",
@@ -79,7 +75,14 @@ void runProxyTasks(List<String> tasks) async {
         registProxifier();
         break;
       case "p2":
-        await OpenFile.open("C:/Program Files (x86)/Proxifier/Proxifier.exe");
+        Process.runSync(
+            "start",
+            [
+              (File("C:/Program Files (x86)/Proxifier/Proxifier.exe")
+                  .absolute
+                  .path),
+            ],
+            runInShell: true);
       case "p3":
         Process.runSync(
             "start",
@@ -93,7 +96,12 @@ void runProxyTasks(List<String> tasks) async {
             runInShell: true);
         break;
       case "s1":
-        await OpenFile.open("rosa_Data/bin/proxy/Shadowsocks.exe");
+        Process.runSync(
+            "start",
+            [
+              (File("rosa_Data/bin/proxy/Shadowsocks.exe").absolute.path),
+            ],
+            runInShell: true);
         break;
       default:
         break;
