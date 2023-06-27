@@ -58,10 +58,12 @@ void runProxyTasks(List<String> tasks) async {
     switch (taskname) {
       case "psi":
         {
-          getfile(
-              getGithubStuffUri(
-                  "https://github.com/H2Sxxa/Rosa/blob/bin/application/proxy.zip"),
-              "rosa_Data/bin/proxy.zip");
+          if (!File("rosa_Data/bin/proxy.zip").existsSync()) {
+            await getfile(
+                getGithubStuffUri(
+                    "https://github.com/H2Sxxa/Rosa/blob/bin/application/proxy.zip"),
+                "rosa_Data/bin/proxy.zip");
+          }
           unzip("rosa_Data/bin/proxy.zip", "rosa_Data/bin/");
           Process.runSync(
               "start",
