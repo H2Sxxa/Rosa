@@ -25,18 +25,18 @@ var pageProxy = ScaffoldPage.scrollable(children: [
         }
       },
       items: [
+        TreeViewItem(
+            content: const Text("Install Proxy package"), value: "psi"),
         TreeViewItem(content: const Text("Proxifier"), value: "p0", children: [
-          TreeViewItem(content: const Text("Install"), value: "p1"),
-          TreeViewItem(content: const Text("register"), value: "p2"),
-          TreeViewItem(content: const Text("Start"), value: "p3"),
-          TreeViewItem(content: const Text("Import setting"), value: "p4"),
+          TreeViewItem(content: const Text("register"), value: "p1"),
+          TreeViewItem(content: const Text("Start"), value: "p2"),
+          TreeViewItem(content: const Text("Import setting"), value: "p3"),
         ]),
         TreeViewItem(
             content: const Text("Shadowsocks"),
             value: "s0",
             children: [
-              TreeViewItem(content: const Text("Install"), value: "s1"),
-              TreeViewItem(content: const Text("Start"), value: "s2")
+              TreeViewItem(content: const Text("Start"), value: "s1")
             ]),
       ]),
   FilledButton(

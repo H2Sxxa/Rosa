@@ -1,8 +1,32 @@
+import 'dart:io';
+
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:open_file/open_file.dart';
 import 'package:rosa/client/get.dart';
 import 'package:rosa/pages/widgets/prompts.dart';
 import 'package:win32_registry/win32_registry.dart';
-import 'package:open_file/open_file.dart';
+import 'package:archive/archive_io.dart';
+
+
+void unzip(String path, String out) {
+  final bytes = File(path).readAsBytesSync();
+
+  // Decode the Zip file
+  final archive = ZipDecoder().decodeBytes(bytes);
+
+  // Extract the contents of the Zip archive to disk.
+  for (final file in archive) {
+    final filename = file.name;
+    if (file.isFile) {
+      final data = file.content as List<int>;
+      File(out + filename)
+        ..createSync(recursive: true)
+        ..writeAsBytesSync(data);
+    } else {
+      Directory(out + filename).create(recursive: true);
+    }
+  }
+}
 
 void registProxifier() {
   try {
@@ -32,26 +56,44 @@ void registProxifier() {
 }
 
 void runProxyTasks(List<String> tasks) async {
-  for (var ptaskname in tasks) {
-    switch (ptaskname) {
+  for (var taskname in tasks) {
+    switch (taskname) {
+      case "psi":
+        {
+          if (!File("rosa_Data/bin/proxy.zip").existsSync()) {
+            getfile(
+                getGithubStuffUri(
+                    "https://github.com/H2Sxxa/Rosa/blob/bin/application/proxy.zip"),
+                "rosa_Data/bin/proxy.zip");
+          }
+          unzip("rosa_Data/bin/proxy.zip", "rosa_Data/bin/");
+          Process.runSync(
+              "start",
+              [
+                (File("rosa_Data/bin/proxy/ProxifierSetup.exe").absolute.path),
+                "/silent"
+              ],
+              runInShell: true);
+        }
       case "p1":
-        getfile("uri", "path");
-        break;
-      case "p2":
         registProxifier();
         break;
-      default:
+      case "p2":
+        await OpenFile.open("C:/Program Files (x86)/Proxifier/Proxifier.exe");
+      case "p3":
+        Process.runSync(
+            "start",
+            [
+              (File("C:/Program Files (x86)/Proxifier/Proxifier.exe")
+                  .absolute
+                  .path),
+              File("rosa_Data/bin/proxy/Minecraft.ppx").absolute.path,
+              "silent-load"
+            ],
+            runInShell: true);
         break;
-    }
-  }
-
-  for (var staskname in tasks) {
-    switch (staskname) {
       case "s1":
-        getfile("uri", "path");
-        break;
-      case "s2":
-        OpenFile.open("");
+        await OpenFile.open("rosa_Data/bin/proxy/Shadowsocks.exe");
         break;
       default:
         break;
