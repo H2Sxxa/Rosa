@@ -1,4 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:rosa/client/execute.dart';
 import 'package:rosa/client/post.dart';
 import 'package:rosa/config/json.dart';
 import 'package:rosa/pages/widgets/prompts.dart';
@@ -12,21 +13,37 @@ var pageHome = MarkdownFileBuilder(
   ispage: true,
 );
 
+List<String> _proxySelect = [];
 var pageProxy = ScaffoldPage.scrollable(children: [
   MarkdownFileBuilder(path: "${getI18nfullPath()}md/proxy.md", ispage: false),
-  TreeView(selectionMode: TreeViewSelectionMode.multiple, items: [
-    TreeViewItem(content: const Text("Proxifier"), value: "p0", children: [
-      TreeViewItem(content: const Text("Install"), value: "p1"),
-      TreeViewItem(content: const Text("register"), value: "p2"),
-      TreeViewItem(content: const Text("Start"), value: "p3"),
-      TreeViewItem(content: const Text("Import setting"), value: "p4"),
-    ]),
-    TreeViewItem(content: const Text("Shadowsocks"), value: "s0", children: [
-      TreeViewItem(content: const Text("Install"), value: "s1"),
-      TreeViewItem(content: const Text("Start"), value: "s2")
-    ]),
-  ]),
-  FilledButton(child: const Text("Run it!"), onPressed: () {})
+  TreeView(
+      selectionMode: TreeViewSelectionMode.multiple,
+      onSelectionChanged: (selectedItems) async {
+        _proxySelect = [];
+        for (var item in selectedItems) {
+          _proxySelect.add(item.value);
+        }
+      },
+      items: [
+        TreeViewItem(content: const Text("Proxifier"), value: "p0", children: [
+          TreeViewItem(content: const Text("Install"), value: "p1"),
+          TreeViewItem(content: const Text("register"), value: "p2"),
+          TreeViewItem(content: const Text("Start"), value: "p3"),
+          TreeViewItem(content: const Text("Import setting"), value: "p4"),
+        ]),
+        TreeViewItem(
+            content: const Text("Shadowsocks"),
+            value: "s0",
+            children: [
+              TreeViewItem(content: const Text("Install"), value: "s1"),
+              TreeViewItem(content: const Text("Start"), value: "s2")
+            ]),
+      ]),
+  FilledButton(
+      child: const Text("Run it!"),
+      onPressed: () {
+        runProxyTasks(_proxySelect);
+      })
 ]);
 
 var _jdks = [];
