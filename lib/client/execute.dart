@@ -7,7 +7,8 @@ import 'package:open_file/open_file.dart';
 void registProxifier() {
   try {
     final point = Registry.openPath(RegistryHive.localMachine,
-        path: r"SOFTWARE\Initex\Proxifier\License");
+        path: r"SOFTWARE\Initex\Proxifier\License",
+        desiredAccessRights: AccessRights.allAccess);
     var owner = const RegistryValue("Owner", RegistryValueType.string, "ROSA");
     var key = const RegistryValue(
         "Key", RegistryValueType.string, "5EZ8G-C3WL5-B56YG-SCXM9-6QZAP");
@@ -16,7 +17,8 @@ void registProxifier() {
   } on Exception catch (_) {
     try {
       final point = Registry.openPath(RegistryHive.currentUser,
-          path: r"SOFTWARE\Initex\Proxifier\License");
+          path: r"SOFTWARE\Initex\Proxifier\License",
+          desiredAccessRights: AccessRights.allAccess);
       var owner =
           const RegistryValue("Owner", RegistryValueType.string, "ROSA");
       var key = const RegistryValue(
