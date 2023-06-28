@@ -77,7 +77,7 @@ void runProxyTasks(List<String> tasks) async {
         registProxifier();
         break;
       case "p2":
-        Process.runSync(
+        Process.run(
             "start",
             [
               "",
@@ -99,7 +99,7 @@ void runProxyTasks(List<String> tasks) async {
             runInShell: true);
         break;
       case "s1":
-        Process.runSync(
+        Process.run(
             "start",
             [
               "",
