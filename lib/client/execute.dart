@@ -80,6 +80,7 @@ void runProxyTasks(List<String> tasks) async {
         Process.runSync(
             "start",
             [
+              "",
               (File("C:/Program Files (x86)/Proxifier/Proxifier.exe")
                   .absolute
                   .path),
@@ -101,6 +102,7 @@ void runProxyTasks(List<String> tasks) async {
         Process.runSync(
             "start",
             [
+              "",
               (File("rosa_Data/bin/proxy/Shadowsocks.exe").absolute.path),
             ],
             runInShell: true);
