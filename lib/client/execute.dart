@@ -76,6 +76,7 @@ void runProxyTasks(List<String> tasks) async {
                 ],
                 runInShell: true);
           }
+          break;
         case "p1":
           registProxifier();
           break;
@@ -89,6 +90,7 @@ void runProxyTasks(List<String> tasks) async {
                     .path),
               ],
               runInShell: true);
+          break;
         case "p3":
           Process.runSync(
               "start",
