@@ -54,61 +54,69 @@ void registProxifier() {
 }
 
 void runProxyTasks(List<String> tasks) async {
-  for (var taskname in tasks) {
-    switch (taskname) {
-      case "psi":
-        {
-          if (!File("rosa_Data/bin/proxy.zip").existsSync()) {
-            await getfile(
-                getGithubStuffUri(
-                    "https://github.com/H2Sxxa/Rosa/blob/bin/application/proxy.zip"),
-                "rosa_Data/bin/proxy.zip");
+  try {
+    for (var taskname in tasks) {
+      switch (taskname) {
+        case "psi":
+          {
+            if (!File("rosa_Data/bin/proxy.zip").existsSync()) {
+              await getfile(
+                  getGithubStuffUri(
+                      "https://github.com/H2Sxxa/Rosa/blob/bin/application/proxy.zip"),
+                  "rosa_Data/bin/proxy.zip");
+            }
+            unzip("rosa_Data/bin/proxy.zip", "rosa_Data/bin/");
+            Process.runSync(
+                "start",
+                [
+                  (File("rosa_Data/bin/proxy/ProxifierSetup.exe")
+                      .absolute
+                      .path),
+                  "/silent"
+                ],
+                runInShell: true);
           }
-          unzip("rosa_Data/bin/proxy.zip", "rosa_Data/bin/");
+        case "p1":
+          registProxifier();
+          break;
+        case "p2":
+          Process.run(
+              "start",
+              [
+                "",
+                (File("C:/Program Files (x86)/Proxifier/Proxifier.exe")
+                    .absolute
+                    .path),
+              ],
+              runInShell: true);
+        case "p3":
           Process.runSync(
               "start",
               [
-                (File("rosa_Data/bin/proxy/ProxifierSetup.exe").absolute.path),
-                "/silent"
+                (File("C:/Program Files (x86)/Proxifier/Proxifier.exe")
+                    .absolute
+                    .path),
+                File("rosa_Data/bin/proxy/Minecraft.ppx").absolute.path,
+                "silent-load"
               ],
               runInShell: true);
-        }
-      case "p1":
-        registProxifier();
-        break;
-      case "p2":
-        Process.run(
-            "start",
-            [
-              "",
-              (File("C:/Program Files (x86)/Proxifier/Proxifier.exe")
-                  .absolute
-                  .path),
-            ],
-            runInShell: true);
-      case "p3":
-        Process.runSync(
-            "start",
-            [
-              (File("C:/Program Files (x86)/Proxifier/Proxifier.exe")
-                  .absolute
-                  .path),
-              File("rosa_Data/bin/proxy/Minecraft.ppx").absolute.path,
-              "silent-load"
-            ],
-            runInShell: true);
-        break;
-      case "s1":
-        Process.run(
-            "start",
-            [
-              "",
-              (File("rosa_Data/bin/proxy/Shadowsocks.exe").absolute.path),
-            ],
-            runInShell: true);
-        break;
-      default:
-        break;
+          break;
+        case "s1":
+          Process.run(
+              "start",
+              [
+                "",
+                (File("rosa_Data/bin/proxy/Shadowsocks.exe").absolute.path),
+              ],
+              runInShell: true);
+          break;
+        default:
+          break;
+      }
     }
+  } on Exception catch (_) {
+    showConDialog(Text(_.toString()), "Result");
+    return;
   }
+  showConDialog(const Text("All Finish"), "Result");
 }
