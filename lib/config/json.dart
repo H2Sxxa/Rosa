@@ -38,7 +38,11 @@ Map initTranslation(Map initdata) {
 
 dynamic getTranslation(String key) {
   File file = File(getTranslatePath());
-  return jsonDecode(file.readAsStringSync())[key];
+  var result = jsonDecode(file.readAsStringSync())[key];
+  if (result == null) {
+    return "$key->null";
+  }
+  return result;
 }
 
 Map initManifestMap(Map initdata) {

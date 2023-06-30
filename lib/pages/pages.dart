@@ -68,7 +68,7 @@ var pageDownload = ScaffoldPage.scrollable(children: [
   const SizedBox(
     height: 20,
   ),
-  FilledButton(child: const Text("Get JDKs"), onPressed: () {}),
+  FilledButton(child: Text(getTranslation("download")), onPressed: () {}),
 ]);
 
 var pageAbout = MarkdownFileBuilder(
@@ -100,15 +100,15 @@ var pagePastebin = ScaffoldPage.scrollable(children: [
           FilledButton(
               child: Text(getTranslation("upload_text")),
               onPressed: () async {
-                var result = await showConfirmDialog(
-                    "Notice not to upload too frequent");
+                var result =
+                    await showConfirmDialog(getTranslation("notice_upload"));
                 if (result) {
                   String feedback;
                   try {
                     var response = await newnotemclo(_uploadtext);
                     feedback = response.data["url"];
                   } on Exception catch (_) {
-                    feedback = "Error,Please Retry.";
+                    feedback = getTranslation("erroretry");
                   }
                   showConDialog(
                       Card(
@@ -116,14 +116,14 @@ var pagePastebin = ScaffoldPage.scrollable(children: [
                         ispage: false,
                         string: feedback,
                       )),
-                      "Feedback");
+                      getTranslation("feedback"));
                 }
               }),
           FilledButton(
               child: Text(getTranslation("upload_file")),
               onPressed: () async {
-                var result = await showConfirmDialog(
-                    "Notice not to upload too frequent");
+                var result =
+                    await showConfirmDialog(getTranslation("notice_upload"));
                 if (result) {
                   String feedback;
                   var upload = await selectlog();
@@ -134,7 +134,7 @@ var pagePastebin = ScaffoldPage.scrollable(children: [
                     var response = await newnotemclo(upload as String);
                     feedback = response.data["url"];
                   } on Exception catch (_) {
-                    feedback = "Error,Please Retry.";
+                    feedback = getTranslation("erroretry");
 
                     // ignore: avoid_print
                     print(_);
@@ -145,7 +145,7 @@ var pagePastebin = ScaffoldPage.scrollable(children: [
                         ispage: false,
                         string: feedback,
                       )),
-                      "Feedback");
+                      getTranslation("feedback"));
                 }
               })
         ],
@@ -160,17 +160,6 @@ var pagePastebin = ScaffoldPage.scrollable(children: [
   )),
 ]);
 
-String getThemeModeDisplay(int key) {
-  switch (key) {
-    case -1:
-      return "Dark";
-    case 1:
-      return "Light";
-    default:
-      return "System";
-  }
-}
-
 var pageSettings = ScaffoldPage.scrollable(children: [
   MarkdownFileBuilder(
       path: "${getI18nfullPath()}md/settings/part0.md", ispage: false),
@@ -181,19 +170,19 @@ var pageSettings = ScaffoldPage.scrollable(children: [
     mainAxisAlignment: MainAxisAlignment.start,
     children: [
       ComboBox(
-        placeholder: const Text("ThemeMode"),
-        items: const [
+        placeholder: Text(getTranslation("thememode")),
+        items: [
           ComboBoxItem(
             value: 0,
-            child: Text("System"),
+            child: Text(getTranslation("system")),
           ),
           ComboBoxItem(
             value: -1,
-            child: Text("Dark"),
+            child: Text(getTranslation("dark")),
           ),
           ComboBoxItem(
             value: 1,
-            child: Text("Light"),
+            child: Text(getTranslation("light")),
           ),
         ],
         onChanged: (value) => writeJsonValue("thememode", value),

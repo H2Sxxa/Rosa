@@ -36,6 +36,16 @@ void initConfig() {
     "doc": "文档",
     "htsetup": "如何正确代理来加速构建环境",
     "upload_text": "上传文本",
-    "upload_file": "上传文件"
+    "upload_file": "上传文件",
+    "system": "系统",
+    "dark": "暗色",
+    "light": "亮色",
+    "thememode": "主题模式",
+    "feedback": "回馈",
+    "start": "启动",
+    "regist": "注册",
+    "importset": "导入设置",
+    "notice_upload":"注意不要上传过于频繁",
+    "erroretry": "错误，请重试"
   });
 }

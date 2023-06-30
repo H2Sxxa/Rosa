@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:rosa/client/get.dart';
+import 'package:rosa/config/json.dart';
 import 'package:rosa/const.dart';
 import 'package:rosa/pages/widgets/prompts.dart';
 import 'package:win32_registry/win32_registry.dart';
@@ -138,5 +139,5 @@ void setupJDKs(List jdks) async {
       feedbacktext = "$feedbacktext$_\n";
     }
   }
-  showConDialog(Text(feedbacktext), "Feedback");
+  showConDialog(Text(feedbacktext), getTranslation("feedback"));
 }
