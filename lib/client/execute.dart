@@ -1,7 +1,9 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:rosa/client/get.dart';
+import 'package:rosa/const.dart';
 import 'package:rosa/pages/widgets/prompts.dart';
 import 'package:win32_registry/win32_registry.dart';
 import 'package:archive/archive_io.dart';
@@ -121,4 +123,20 @@ void runProxyTasks(List<String> tasks) async {
     return;
   }
   showConDialog(const Text("All Finish"), "Result");
+}
+
+void setupJDKs(List jdks) async {
+  String feedbacktext = "";
+  for (Map jdk in jdks) {
+    var name = jdk["name"];
+    var uri = getGithubStuffUri(jdk["uri"]);
+    try {
+      Dio().downloadUri(
+          Uri.parse(uri), "$userProfile.mcreator/gradle/jdks/$name");
+      feedbacktext = "$feedbacktext$name from $uri \n";
+    } on Exception catch (_) {
+      feedbacktext = "$feedbacktext$_\n";
+    }
+  }
+  showConDialog(Text(feedbacktext), "Feedback");
 }

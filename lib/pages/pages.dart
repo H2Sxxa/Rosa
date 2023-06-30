@@ -2,7 +2,6 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:rosa/client/execute.dart';
 import 'package:rosa/client/post.dart';
 import 'package:rosa/config/json.dart';
-import 'package:rosa/main.dart';
 import 'package:rosa/pages/widgets/prompts.dart';
 import 'package:rosa/pages/widgets/selector.dart';
 
@@ -65,7 +64,11 @@ var pageDownload = ScaffoldPage.scrollable(children: [
           TreeViewItem(content: const Text("JDK 16"), value: "16"),
           TreeViewItem(content: const Text("JDK 8"), value: "8")
         ])
-      ])
+      ]),
+  const SizedBox(
+    height: 20,
+  ),
+  FilledButton(child: const Text("Get JDKs"), onPressed: () {}),
 ]);
 
 var pageAbout = MarkdownFileBuilder(
