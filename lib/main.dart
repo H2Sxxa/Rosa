@@ -46,7 +46,21 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeMode thememode;
+    switch (getJsonValue("thememode")) {
+      case -1:
+        thememode = ThemeMode.dark;
+        break;
+      case 1:
+        thememode = ThemeMode.light;
+        break;
+      default:
+        thememode = ThemeMode.system;
+        break;
+    }
+
     return FluentApp(
+        themeMode: thememode,
         navigatorKey: navigatorKey,
         theme: FluentThemeData(
             fontFamily: getJsonValue("fontfamily"),

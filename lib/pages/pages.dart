@@ -2,6 +2,7 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:rosa/client/execute.dart';
 import 'package:rosa/client/post.dart';
 import 'package:rosa/config/json.dart';
+import 'package:rosa/main.dart';
 import 'package:rosa/pages/widgets/prompts.dart';
 import 'package:rosa/pages/widgets/selector.dart';
 
@@ -156,7 +157,44 @@ var pagePastebin = ScaffoldPage.scrollable(children: [
   )),
 ]);
 
+String getThemeModeDisplay(int key) {
+  switch (key) {
+    case -1:
+      return "Dark";
+    case 1:
+      return "Light";
+    default:
+      return "System";
+  }
+}
+
 var pageSettings = ScaffoldPage.scrollable(children: [
   MarkdownFileBuilder(
       path: "${getI18nfullPath()}md/settings/part0.md", ispage: false),
+  const SizedBox(
+    height: 20,
+  ),
+  Row(
+    mainAxisAlignment: MainAxisAlignment.start,
+    children: [
+      ComboBox(
+        placeholder: const Text("ThemeMode"),
+        items: const [
+          ComboBoxItem(
+            value: 0,
+            child: Text("System"),
+          ),
+          ComboBoxItem(
+            value: -1,
+            child: Text("Dark"),
+          ),
+          ComboBoxItem(
+            value: 1,
+            child: Text("Light"),
+          ),
+        ],
+        onChanged: (value) => writeJsonValue("thememode", value),
+      )
+    ],
+  )
 ]);

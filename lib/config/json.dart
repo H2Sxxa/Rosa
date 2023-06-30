@@ -19,6 +19,13 @@ dynamic getJsonValue(String key) {
   return jsonDecode(file.readAsStringSync())[key];
 }
 
+void writeJsonValue(String key, dynamic value) {
+  File file = File(configPath);
+  Map jsonmap = jsonDecode(file.readAsStringSync());
+  jsonmap[key] = value;
+  file.writeAsStringSync(jsonEncode(jsonmap));
+}
+
 Map initTranslation(Map initdata) {
   File file = File(getTranslatePath());
   if (file.existsSync()) {

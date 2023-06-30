@@ -4,13 +4,11 @@ void initConfig() {
   initJsonMap({
     "localization": "zh_cn",
     "fontfamily": "BoldHans",
-    "title": "ROSA - Setup the dev environment"
+    "title": "ROSA - Setup the dev environment",
+    "thememode": 0
   });
 
   initManifestMap({
-    "proxifier": "",
-    "shadowsocks": "",
-    "ppx": "",
     "jdk8": {
       "name": "adoptopenjdk-8-x64-windows.zip",
       "uri":
