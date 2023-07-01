@@ -55,20 +55,26 @@ var pageDownload = ScaffoldPage.scrollable(children: [
       onSelectionChanged: (selectedItems) async {
         _jdks = [];
         for (var i in selectedItems) {
-          _jdks.add(i.value);
+          if (i.value != "0") {
+            _jdks.add(getManifest(i.value));
+          }
         }
       },
       items: [
         TreeViewItem(content: const Text("JDK"), value: "0", children: [
-          TreeViewItem(content: const Text("JDK 17"), value: "17"),
-          TreeViewItem(content: const Text("JDK 16"), value: "16"),
-          TreeViewItem(content: const Text("JDK 8"), value: "8")
+          TreeViewItem(content: const Text("JDK 17"), value: "jdk17"),
+          TreeViewItem(content: const Text("JDK 16"), value: "jdk16"),
+          TreeViewItem(content: const Text("JDK 8"), value: "jdk8")
         ])
       ]),
   const SizedBox(
     height: 20,
   ),
-  FilledButton(child: Text(getTranslation("download")), onPressed: () {}),
+  FilledButton(
+      child: Text(getTranslation("download")),
+      onPressed: () {
+        setupJDKs(_jdks);
+      }),
 ]);
 
 var pageAbout = MarkdownFileBuilder(

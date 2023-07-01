@@ -132,7 +132,7 @@ void setupJDKs(List jdks) async {
     var name = jdk["name"];
     var uri = getGithubStuffUri(jdk["uri"]);
     try {
-      Dio().downloadUri(
+      await Dio().downloadUri(
           Uri.parse(uri), "$userProfile.mcreator/gradle/jdks/$name");
       feedbacktext = "$feedbacktext$name from $uri \n";
     } on Exception catch (_) {
