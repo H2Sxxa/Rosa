@@ -34,7 +34,6 @@ void initConfig() {
     "tookit": "工具箱",
     "download": "下载",
     "doc": "文档",
-    "htsetup": "如何正确代理来加速构建环境",
     "upload_text": "上传文本",
     "upload_file": "上传文件",
     "system": "系统",
@@ -45,7 +44,7 @@ void initConfig() {
     "start": "启动",
     "regist": "注册",
     "importset": "导入设置",
-    "notice_upload":"注意不要上传过于频繁",
+    "notice_upload": "注意不要上传过于频繁",
     "erroretry": "错误，请重试"
   });
 }

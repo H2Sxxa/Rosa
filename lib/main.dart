@@ -39,7 +39,7 @@ class _MyAppState extends State<MyApp> {
     pageProxy,
     pagePastebin,
     pageDownload,
-    docHTSetup,
+    pageDoc,
     pageSettings,
     pageAbout
   ];
@@ -104,10 +104,9 @@ class _MyAppState extends State<MyApp> {
                     title: Text(getTranslation("download")),
                     icon: const Icon(FluentIcons.download),
                     body: const SizedBox.shrink()),
-                PaneItemHeader(header: Text(getTranslation("doc"))),
                 PaneItem(
                     icon: const Icon(FluentIcons.book_answers),
-                    title: Text(getTranslation("htsetup")),
+                    title: Text(getTranslation("doc")),
                     body: const SizedBox.shrink())
               ],
               footerItems: [

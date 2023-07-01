@@ -82,10 +82,12 @@ var pageAbout = MarkdownFileBuilder(
   ispage: true,
 );
 
-var docHTSetup = MarkdownFileBuilder(
-  path: "${getI18nfullPath()}md/htsetup.md",
-  ispage: true,
-);
+var pageDoc = ScaffoldPage.scrollable(children: [
+  MarkdownFileBuilder(path: "${getI18nfullPath()}md/doc.md", ispage: false),
+  const SizedBox(
+    height: 20,
+  )
+]);
 
 var _uploadtext = '';
 var pagePastebin = ScaffoldPage.scrollable(children: [
