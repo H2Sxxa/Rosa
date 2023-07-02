@@ -43,7 +43,6 @@ class _MyAppState extends State<MyApp> {
     pageSettings,
     pageAbout
   ];
-
   @override
   Widget build(BuildContext context) {
     ThemeMode thememode;
@@ -75,6 +74,14 @@ class _MyAppState extends State<MyApp> {
             iconTheme:
                 IconThemeData(size: 24, color: SystemTheme.accentColor.accent)),
         home: NavigationView(
+          appBar: NavigationAppBar(
+              title: Text(getJsonValue("title")),
+              leading: IconButton(
+                icon: const Icon(FluentIcons.refresh),
+                onPressed: () {
+                  setState(() {});
+                },
+              )),
           paneBodyBuilder: (item, body) => IndexedStack(
             index: _pageindex,
             children: pages,

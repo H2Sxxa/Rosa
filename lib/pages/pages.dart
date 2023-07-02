@@ -2,7 +2,6 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:rosa/client/execute.dart';
 import 'package:rosa/client/post.dart';
 import 'package:rosa/config/json.dart';
-import 'package:rosa/pages/markdown/docgen.dart';
 import 'package:rosa/pages/widgets/prompts.dart';
 import 'package:rosa/pages/widgets/selector.dart';
 
@@ -83,13 +82,24 @@ var pageAbout = MarkdownFileBuilder(
   ispage: true,
 );
 
-
 var pageDoc = ScaffoldPage.scrollable(children: [
   MarkdownFileBuilder(path: "${getI18nfullPath()}md/doc.md", ispage: false),
   const SizedBox(
     height: 20,
   ),
-  
+  Card(
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        ComboBox(
+          placeholder: const Text("document list"),
+          items: const [ComboBoxItem(child: Text("txt"))],
+          onChanged: (value) => {},
+        ),
+        Button(child: const Text("open"), onPressed: () {})
+      ],
+    ),
+  ),
 ]);
 
 var _uploadtext = '';
