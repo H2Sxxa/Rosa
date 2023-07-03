@@ -2,6 +2,7 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:rosa/client/execute.dart';
 import 'package:rosa/client/post.dart';
 import 'package:rosa/config/json.dart';
+import 'package:rosa/main.dart';
 import 'package:rosa/pages/widgets/prompts.dart';
 import 'package:rosa/pages/widgets/selector.dart';
 
@@ -206,7 +207,10 @@ var pageSettings = ScaffoldPage.scrollable(children: [
             child: Text(getTranslation("light")),
           ),
         ],
-        onChanged: (value) => writeJsonValue("thememode", value),
+        onChanged: (value) {
+          writeJsonValue("thememode", value);
+          refreshState();
+        },
       )
     ],
   )

@@ -21,6 +21,11 @@ void main() {
 }
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+late State<MyApp> globalState;
+void refreshState() {
+  // ignore: invalid_use_of_protected_member
+  globalState.setState(() {});
+}
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -33,6 +38,10 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   int _pageindex = 0;
+
+  _MyAppState() {
+    globalState = this;
+  }
 
   final pages = [
     pageHome,
@@ -74,14 +83,6 @@ class _MyAppState extends State<MyApp> {
             iconTheme:
                 IconThemeData(size: 24, color: SystemTheme.accentColor.accent)),
         home: NavigationView(
-          appBar: NavigationAppBar(
-              title: Text(getJsonValue("title")),
-              leading: IconButton(
-                icon: const Icon(FluentIcons.refresh),
-                onPressed: () {
-                  setState(() {});
-                },
-              )),
           paneBodyBuilder: (item, body) => IndexedStack(
             index: _pageindex,
             children: pages,
