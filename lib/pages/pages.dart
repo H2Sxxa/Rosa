@@ -47,7 +47,12 @@ var pageProxy = ScaffoldPage.scrollable(children: [
         runProxyTasks(_proxySelect);
       })
 ]);
-
+var pageClassPatcher = ScaffoldPage.scrollable(children: [
+  MarkdownFileBuilder(
+    path: "${getI18nfullPath()}md/classpatcher.md",
+    ispage: false,
+  )
+]);
 var _jdks = [];
 var pageDownload = ScaffoldPage.scrollable(children: [
   MarkdownFileBuilder(

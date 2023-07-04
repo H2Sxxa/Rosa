@@ -51,7 +51,8 @@ void initConfig() {
     "regist": "注册",
     "importset": "导入设置",
     "notice_upload": "注意不要上传过于频繁",
-    "erroretry": "错误，请重试"
+    "erroretry": "错误，请重试",
+    "classpatcher": "类修改器"
   });
 }
 

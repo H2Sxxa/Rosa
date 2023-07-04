@@ -53,6 +53,7 @@ class _MyAppState extends State<MyApp> {
     pageProxy,
     pagePastebin,
     pageDownload,
+    pageClassPatcher,
     pageDoc,
     pageSettings,
     pageAbout
@@ -116,6 +117,10 @@ class _MyAppState extends State<MyApp> {
                 PaneItem(
                     title: Text(getTranslation("download")),
                     icon: const Icon(FluentIcons.download),
+                    body: const SizedBox.shrink()),
+                PaneItem(
+                    title: Text(getTranslation("classpatcher")),
+                    icon: const Icon(FluentIcons.fixed_asset_management),
                     body: const SizedBox.shrink()),
                 PaneItem(
                     icon: const Icon(FluentIcons.book_answers),
