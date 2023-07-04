@@ -28,7 +28,7 @@ void initConfig() {
     "jdk17": {
       "name": "adoptopenjdk-17-x64-windows.zip",
       "uri":
-          "https://ghproxy.com/https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.1%2B12/OpenJDK17U-jdk_x64_windows_hotspot_17.0.1_12.zip"
+          "https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.1%2B12/OpenJDK17U-jdk_x64_windows_hotspot_17.0.1_12.zip"
     },
   });
 
@@ -60,7 +60,7 @@ Future<List<String>> initFontFamilies() async {
   for (var entry in Directory("C:/Windows/Fonts").listSync()) {
     var entryfile = File(entry.absolute.path);
     if (entryfile.statSync().type == FileSystemEntityType.file) {
-      if (extension(entryfile.path) == ".ttf") {
+      if (extension(entryfile.path).toLowerCase() == ".ttf") {
         String familyname = basenameWithoutExtension(entryfile.path);
         Uint8List bytes = entryfile.readAsBytesSync();
         loadFontFromList(bytes, fontFamily: familyname);

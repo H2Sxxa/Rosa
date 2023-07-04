@@ -23,10 +23,9 @@ void main() async {
 }
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-late State<MyApp> globalState;
+late dynamic globalState;
 void refreshState() {
-  // ignore: invalid_use_of_protected_member
-  globalState.setState(() {});
+  globalState.refresh();
 }
 
 class MyApp extends StatefulWidget {
@@ -40,6 +39,10 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   int _pageindex = 0;
+
+  void refresh() {
+    setState(() {});
+  }
 
   _MyAppState() {
     globalState = this;
