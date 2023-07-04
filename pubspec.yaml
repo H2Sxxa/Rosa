@@ -73,7 +73,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
 
   fonts:
-  - family: BoldHans
+  - family: default
     fonts:
       - asset: fonts/SourceHanSansSC-Bold.otf
       #- asset: fonts/Poppins-Bold.ttf

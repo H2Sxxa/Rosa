@@ -1,9 +1,15 @@
+import 'dart:io';
+import 'dart:typed_data';
+import 'dart:ui';
+
+import 'package:flutter/services.dart';
+import 'package:path/path.dart';
 import 'package:rosa/config/json.dart';
 
 void initConfig() {
   initJsonMap({
     "localization": "zh_cn",
-    "fontfamily": "BoldHans",
+    "fontfamily": "default",
     "title": "ROSA - Setup the dev environment",
     "thememode": 0
   });
@@ -37,8 +43,8 @@ void initConfig() {
     "upload_text": "上传文本",
     "upload_file": "上传文件",
     "system": "系统",
-    "dark": "暗色",
-    "light": "亮色",
+    "dark": "深色",
+    "light": "浅色",
     "thememode": "主题模式",
     "feedback": "回馈",
     "start": "启动",
@@ -47,4 +53,20 @@ void initConfig() {
     "notice_upload": "注意不要上传过于频繁",
     "erroretry": "错误，请重试"
   });
+}
+
+Future<List<String>> initFontFamilies() async {
+  List<String> result = ["default"];
+  for (var entry in Directory("C:/Windows/Fonts").listSync()) {
+    var entryfile = File(entry.absolute.path);
+    if (entryfile.statSync().type == FileSystemEntityType.file) {
+      if (extension(entryfile.path) == ".ttf") {
+        String familyname = basenameWithoutExtension(entryfile.path);
+        Uint8List bytes = entryfile.readAsBytesSync();
+        loadFontFromList(bytes, fontFamily: familyname);
+        result.add(familyname);
+      }
+    }
+  }
+  return result;
 }

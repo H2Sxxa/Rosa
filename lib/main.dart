@@ -1,11 +1,13 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:rosa/config/init.dart';
 import 'package:rosa/config/json.dart';
+import 'package:rosa/const.dart';
 import 'package:rosa/pages/pages.dart';
 import 'package:system_theme/system_theme.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 
-void main() {
+void main() async {
+  systemFontFamilies = await initFontFamilies();
   initConfig();
   WidgetsFlutterBinding.ensureInitialized();
   runApp(

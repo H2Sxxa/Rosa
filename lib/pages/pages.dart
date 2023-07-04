@@ -2,6 +2,7 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:rosa/client/execute.dart';
 import 'package:rosa/client/post.dart';
 import 'package:rosa/config/json.dart';
+import 'package:rosa/const.dart';
 import 'package:rosa/main.dart';
 import 'package:rosa/pages/widgets/prompts.dart';
 import 'package:rosa/pages/widgets/selector.dart';
@@ -181,7 +182,6 @@ var pagePastebin = ScaffoldPage.scrollable(children: [
     ],
   )),
 ]);
-
 var pageSettings = ScaffoldPage.scrollable(children: [
   MarkdownFileBuilder(
       path: "${getI18nfullPath()}md/settings/part0.md", ispage: false),
@@ -189,7 +189,7 @@ var pageSettings = ScaffoldPage.scrollable(children: [
     height: 20,
   ),
   Row(
-    mainAxisAlignment: MainAxisAlignment.start,
+    mainAxisAlignment: MainAxisAlignment.spaceAround,
     children: [
       ComboBox(
         placeholder: Text(getTranslation("thememode")),
@@ -209,6 +209,19 @@ var pageSettings = ScaffoldPage.scrollable(children: [
         ],
         onChanged: (value) {
           writeJsonValue("thememode", value);
+          refreshState();
+        },
+      ),
+      ComboBox(
+        placeholder: const Text("fonts"),
+        items: List<ComboBoxItem>.generate(
+            systemFontFamilies.length,
+            (index) => ComboBoxItem(
+                  value: systemFontFamilies[index],
+                  child: Text(systemFontFamilies[index]),
+                )),
+        onChanged: (value) {
+          writeJsonValue("fontfamily", value);
           refreshState();
         },
       )
