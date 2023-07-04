@@ -1,5 +1,11 @@
 {
     "manifest":[
-      {"location":"com/gtnewhorizons/retrofuturagradle/Constants.class","uri":"https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/rfg/Constants.class"}
+      {
+        "location":"com/gtnewhorizons/retrofuturagradle/minecraft/DownloadAssetsTask.class",
+        "uri":{
+          "blob":"https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/rfg/DownloadAssetsTask.class",
+          "raw":"https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/rfg/DownloadAssetsTask.class"
+        }
+      }
     ]
 }
