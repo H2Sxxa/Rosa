@@ -6,6 +6,13 @@
           "blob":"https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/rfg/DownloadAssetsTask.class",
           "raw":"https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/rfg/DownloadAssetsTask.class"
         }
+      },
+      {
+        "location":"com/gtnewhorizons/retrofuturagradle/minecraft/MinecraftTasks.class",
+        "uri":{
+          "blob":"https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/rfg/MinecraftTasks.class",
+          "raw":"https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/rfg/MinecraftTasks.class"
+        }
       }
     ]
 }
