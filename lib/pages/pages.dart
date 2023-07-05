@@ -18,29 +18,35 @@ var pageHome = MarkdownFileBuilder(
 List<String> _proxySelect = [];
 var pageProxy = ScaffoldPage.scrollable(children: [
   MarkdownFileBuilder(path: "${getI18nfullPath()}md/proxy.md", ispage: false),
-  TreeView(
-      selectionMode: TreeViewSelectionMode.multiple,
-      onSelectionChanged: (selectedItems) async {
-        _proxySelect = [];
-        for (var item in selectedItems) {
-          _proxySelect.add(item.value);
-        }
-      },
-      items: [
-        TreeViewItem(
-            content: const Text("Install Proxy package"), value: "psi"),
-        TreeViewItem(content: const Text("Proxifier"), value: "p0", children: [
-          TreeViewItem(content: const Text("register"), value: "p1"),
-          TreeViewItem(content: const Text("Start"), value: "p2"),
-          TreeViewItem(content: const Text("Import setting"), value: "p3"),
+  Card(
+    child: TreeView(
+        selectionMode: TreeViewSelectionMode.multiple,
+        onSelectionChanged: (selectedItems) async {
+          _proxySelect = [];
+          for (var item in selectedItems) {
+            _proxySelect.add(item.value);
+          }
+        },
+        items: [
+          TreeViewItem(
+              content: const Text("Install Proxy package"), value: "psi"),
+          TreeViewItem(
+              content: const Text("Proxifier"),
+              value: "p0",
+              children: [
+                TreeViewItem(content: const Text("register"), value: "p1"),
+                TreeViewItem(content: const Text("Start"), value: "p2"),
+                TreeViewItem(
+                    content: const Text("Import setting"), value: "p3"),
+              ]),
+          TreeViewItem(
+              content: const Text("Shadowsocks"),
+              value: "s0",
+              children: [
+                TreeViewItem(content: const Text("Start"), value: "s1")
+              ]),
         ]),
-        TreeViewItem(
-            content: const Text("Shadowsocks"),
-            value: "s0",
-            children: [
-              TreeViewItem(content: const Text("Start"), value: "s1")
-            ]),
-      ]),
+  ),
   FilledButton(
       child: const Text("Run it!"),
       onPressed: () {
@@ -57,25 +63,24 @@ var _jdks = [];
 var pageDownload = ScaffoldPage.scrollable(children: [
   MarkdownFileBuilder(
       path: "${getI18nfullPath()}md/download/part0.md", ispage: false),
-  TreeView(
-      selectionMode: TreeViewSelectionMode.multiple,
-      onSelectionChanged: (selectedItems) async {
-        _jdks = [];
-        for (var i in selectedItems) {
-          if (i.value != "0") {
-            _jdks.add(getManifest(i.value));
+  Card(
+    child: TreeView(
+        selectionMode: TreeViewSelectionMode.multiple,
+        onSelectionChanged: (selectedItems) async {
+          _jdks = [];
+          for (var i in selectedItems) {
+            if (i.value != "0") {
+              _jdks.add(getManifest(i.value));
+            }
           }
-        }
-      },
-      items: [
-        TreeViewItem(content: const Text("JDK"), value: "0", children: [
-          TreeViewItem(content: const Text("JDK 17"), value: "jdk17"),
-          TreeViewItem(content: const Text("JDK 16"), value: "jdk16"),
-          TreeViewItem(content: const Text("JDK 8"), value: "jdk8")
-        ])
-      ]),
-  const SizedBox(
-    height: 20,
+        },
+        items: [
+          TreeViewItem(content: const Text("JDK"), value: "0", children: [
+            TreeViewItem(content: const Text("JDK 17"), value: "jdk17"),
+            TreeViewItem(content: const Text("JDK 16"), value: "jdk16"),
+            TreeViewItem(content: const Text("JDK 8"), value: "jdk8")
+          ])
+        ]),
   ),
   FilledButton(
       child: Text(getTranslation("download")),

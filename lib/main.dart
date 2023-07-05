@@ -120,7 +120,7 @@ class _MyAppState extends State<MyApp> {
                     body: const SizedBox.shrink()),
                 PaneItem(
                     title: Text(getTranslation("classpatcher")),
-                    icon: const Icon(FluentIcons.fixed_asset_management),
+                    icon: const Icon(FluentIcons.edit_mirrored),
                     body: const SizedBox.shrink()),
                 PaneItem(
                     icon: const Icon(FluentIcons.book_answers),

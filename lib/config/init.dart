@@ -11,7 +11,8 @@ void initConfig() {
     "localization": "zh_cn",
     "fontfamily": "default",
     "title": "ROSA - Setup the dev environment",
-    "thememode": 0
+    "thememode": 0,
+    "usemcreator": false,
   });
 
   initManifestMap({
@@ -52,7 +53,7 @@ void initConfig() {
     "importset": "导入设置",
     "notice_upload": "注意不要上传过于频繁",
     "erroretry": "错误，请重试",
-    "classpatcher": "类修改器"
+    "classpatcher": "镜像修补"
   });
 }
 
