@@ -1,8 +1,10 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:archive/archive_io.dart';
 import 'package:dio/dio.dart';
 import 'package:path/path.dart';
+import 'package:rosa/client/execute.dart';
 import 'package:rosa/client/get.dart';
 import 'package:rosa/config/json.dart';
 import 'package:rosa/const.dart';
@@ -15,7 +17,8 @@ Directory getGradleCacheRoot() {
   }
 }
 
-String findcopyJarfromPackagepath(String packagepath, String name) {
+Future<String> findcopyJarfromPackagepath(
+    String packagepath, String name) async {
   for (var entry in Directory(
           "${getGradleCacheRoot().path}caches/modules-2/files-2.1/$packagepath")
       .listSync(recursive: true)) {
@@ -45,37 +48,36 @@ String findcopyJar(String name) {
   return "";
 }
 
-void patchJar(String path, Map patchmap) async {
-  File(path).copy("rosa_Data/caches/${basename(path)}.old");
-  var copyf = await File(path).copy("rosa_Data/caches/${basename(path)}");
-  var targetRoot =
-      "rosa_Data/caches/${basenameWithoutExtension(path)}_patchcache/";
-  //await extractFileToDisk(copyf.path, targetRoot);
-  final inputStream = InputFileStream(copyf.path);
-  final archive = ZipDecoder().decodeBuffer(inputStream);
-  for (var file in archive.files) {
-    if (file.isFile) {
-      final outputStream = OutputFileStream('$targetRoot${file.name}');
-      file.writeContent(outputStream);
-      outputStream.close();
-    }
+
+void patchJar(String path, List patchmaplist) {
+  if (File(absolute("rosa_Data/caches/${basename(path)}.old")).existsSync()) {
+    File(absolute("rosa_Data/caches/${basename(path)}.old")).deleteSync();
   }
-  for (var i in patchmap["manifest"]) {
+  var copyf =
+      File(path).copySync(absolute("rosa_Data/caches/${basename(path)}.old"));
+  var targetRoot =
+      absolute("rosa_Data/caches/${basenameWithoutExtension(path)}_patch/");
+  unzip(copyf.path, targetRoot);
+  for (var i in patchmaplist) {
     Dio().download(getGithubUri(i["uri"]), targetRoot + i["location"]);
   }
 }
 
-void repackJar(String name, String path) {
+Future<void> repackJar(String name, String path) async {
   var rootDir = Directory(path);
   var encoder = ZipFileEncoder();
   encoder.create("${rootDir.parent.path}/$name");
-  for (var i in rootDir.listSync()) {
-    encoder.addFile(File(i.absolute.path));
+  for (var i in rootDir.listSync(recursive: true)) {
+    if (i.statSync().type == FileSystemEntityType.file) {
+      encoder.addFile(File(i.absolute.path));
+    } else {
+      encoder.addDirectory(Directory(i.absolute.path));
+    }
   }
   encoder.close();
 }
 
-void replaceJar(String newpath, String oldpath) async {
+Future<void> replaceJar(String newpath, String oldpath) async {
   //remove jar-9,let gradle regenerate
   var rmdirt = Directory("${getGradleCacheRoot().path}caches/modules-2/jars-9");
   if (rmdirt.existsSync()) {
@@ -88,4 +90,17 @@ void replaceJar(String newpath, String oldpath) async {
   }
 
   File(newpath).copy(oldpath);
+}
+
+void doClassPatcher(String pluginname) async {
+  var infomap = jsonDecode((await Dio().get(getGithubUri(getGithubUriMap(
+          "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/$pluginname/package.json",
+          "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/$pluginname/package.json"))))
+      .data);
+  var jarpath =
+      await findcopyJarfromPackagepath(infomap["package"], infomap["name"]);
+  patchJar(jarpath, infomap["manifest"]);
+  //await repackJar(basename(jarpath),"rosa_Data/caches/${basenameWithoutExtension(jarpath)}_patch/");
+  //printl("finish repack");
+  //await replaceJar("rosa_Data/caches/${basename(jarpath)}", jarpath);
 }

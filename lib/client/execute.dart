@@ -9,13 +9,12 @@ import 'package:rosa/pages/widgets/prompts.dart';
 import 'package:win32_registry/win32_registry.dart';
 import 'package:archive/archive_io.dart';
 
+//BUG WILL LET THE APP NO RESPONSE
 void unzip(String path, String out) {
   final bytes = File(path).readAsBytesSync();
 
-  // Decode the Zip file
   final archive = ZipDecoder().decodeBytes(bytes);
 
-  // Extract the contents of the Zip archive to disk.
   for (final file in archive) {
     final filename = file.name;
     if (file.isFile) {

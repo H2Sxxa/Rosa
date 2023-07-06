@@ -1,5 +1,10 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:rosa/client/classpatcher.dart';
 import 'package:rosa/client/execute.dart';
+import 'package:rosa/client/get.dart';
 import 'package:rosa/client/post.dart';
 import 'package:rosa/config/json.dart';
 import 'package:rosa/const.dart';
@@ -53,12 +58,48 @@ var pageProxy = ScaffoldPage.scrollable(children: [
         runProxyTasks(_proxySelect);
       })
 ]);
+
+final lazyPatcherTarget = [
+  TreeViewItem(
+    content: const Text('GradlePlugins'),
+    value: 'lazy_load',
+    lazy: true,
+    children: [],
+    onExpandToggle: (item, getsExpanded) async {
+      if (item.children.isNotEmpty) return;
+      var resp = await Dio().get(getGithubUri(getGithubUriMap(
+          "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/pkg.support.json",
+          "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/pkg.support.json")));
+      for (String i in jsonDecode(resp.data)["supports"]) {
+        item.children
+            .add(TreeViewItem(content: Text(i.toUpperCase()), value: i));
+      }
+    },
+  ),
+];
+
+var _uploadValue = "";
 var pageClassPatcher = ScaffoldPage.scrollable(children: [
   MarkdownFileBuilder(
     path: "${getI18nfullPath()}md/classpatcher.md",
     ispage: false,
-  )
+  ),
+  Card(
+    child: TreeView(
+        selectionMode: TreeViewSelectionMode.single,
+        shrinkWrap: true,
+        items: lazyPatcherTarget,
+        onSelectionChanged: (selectedItems) async {
+          _uploadValue = selectedItems.first.value;
+        }),
+  ),
+  FilledButton(
+      child: const Text("patcher"),
+      onPressed: () async {
+        doClassPatcher(_uploadValue);
+      })
 ]);
+
 var _jdks = [];
 var pageDownload = ScaffoldPage.scrollable(children: [
   MarkdownFileBuilder(
