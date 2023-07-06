@@ -1,4 +1,6 @@
 {
+    "package":"com.gtnewhorizons/retrofuturagradle",
+    "name":"retrofuturagradle",
     "manifest":[
       {
         "location":"com/gtnewhorizons/retrofuturagradle/minecraft/DownloadAssetsTask.class",
