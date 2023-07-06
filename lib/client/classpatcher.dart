@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
@@ -8,6 +9,7 @@ import 'package:rosa/client/execute.dart';
 import 'package:rosa/client/get.dart';
 import 'package:rosa/config/json.dart';
 import 'package:rosa/const.dart';
+import 'package:rosa/pages/widgets/prompts.dart';
 
 Directory getGradleCacheRoot() {
   if (!getJsonValue("usemcreator")) {
@@ -48,8 +50,10 @@ String findcopyJar(String name) {
   return "";
 }
 
-
-void patchJar(String path, List patchmaplist) {
+Future<void> patchJar(String path, List patchmaplist) async {
+  if (!Directory("rosa_Data/caches").existsSync()) {
+    Directory("rosa_Data/caches").createSync(recursive: true);
+  }
   if (File(absolute("rosa_Data/caches/${basename(path)}.old")).existsSync()) {
     File(absolute("rosa_Data/caches/${basename(path)}.old")).deleteSync();
   }
@@ -57,9 +61,13 @@ void patchJar(String path, List patchmaplist) {
       File(path).copySync(absolute("rosa_Data/caches/${basename(path)}.old"));
   var targetRoot =
       absolute("rosa_Data/caches/${basenameWithoutExtension(path)}_patch/");
-  unzip(copyf.path, targetRoot);
+  if (!Directory(targetRoot).existsSync()) {
+    await Directory(targetRoot).create(recursive: true);
+  }
+  await unzip(copyf.path, targetRoot);
   for (var i in patchmaplist) {
-    Dio().download(getGithubUri(i["uri"]), targetRoot + i["location"]);
+    print(i);
+    await Dio().download(getGithubUri(i["uri"]), targetRoot + i["location"]);
   }
 }
 
@@ -67,7 +75,8 @@ Future<void> repackJar(String name, String path) async {
   var rootDir = Directory(path);
   var encoder = ZipFileEncoder();
   encoder.create("${rootDir.parent.path}/$name");
-  for (var i in rootDir.listSync(recursive: true)) {
+  for (var i in rootDir.listSync()) {
+    iprint(i.path);
     if (i.statSync().type == FileSystemEntityType.file) {
       encoder.addFile(File(i.absolute.path));
     } else {
@@ -92,15 +101,21 @@ Future<void> replaceJar(String newpath, String oldpath) async {
   File(newpath).copy(oldpath);
 }
 
-void doClassPatcher(String pluginname) async {
+Future<void> doClassPatcher(String pluginname) async {
   var infomap = jsonDecode((await Dio().get(getGithubUri(getGithubUriMap(
           "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/$pluginname/package.json",
           "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/$pluginname/package.json"))))
       .data);
   var jarpath =
       await findcopyJarfromPackagepath(infomap["package"], infomap["name"]);
-  patchJar(jarpath, infomap["manifest"]);
-  //await repackJar(basename(jarpath),"rosa_Data/caches/${basenameWithoutExtension(jarpath)}_patch/");
-  //printl("finish repack");
-  //await replaceJar("rosa_Data/caches/${basename(jarpath)}", jarpath);
+  await patchJar(jarpath, infomap["manifest"]);
+  await repackJar(basename(jarpath),
+      "rosa_Data/caches/${basenameWithoutExtension(jarpath)}_patch/");
+  await replaceJar("rosa_Data/caches/${basename(jarpath)}", jarpath);
+  iprint("Finish");
+}
+
+void iprint(dynamic obj) {
+  // ignore: avoid_print
+  print(obj);
 }

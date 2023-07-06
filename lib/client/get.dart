@@ -14,12 +14,10 @@ String getGithubStuffUri(String uri) {
 }
 
 String getGithubUri(Map uri) {
-  return uri["raw"];
+  return getGithubStuffUri(uri["blob"]);
+  //return uri["raw"];
 }
 
 Map getGithubUriMap(String bloburi, String rawuri) {
-  return {
-    "blob":bloburi,
-    "raw":rawuri
-  };
+  return {"blob": bloburi, "raw": rawuri};
 }

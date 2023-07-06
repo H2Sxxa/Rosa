@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter/foundation.dart';
 import 'package:rosa/client/classpatcher.dart';
 import 'package:rosa/client/execute.dart';
 import 'package:rosa/client/get.dart';
@@ -96,7 +97,7 @@ var pageClassPatcher = ScaffoldPage.scrollable(children: [
   FilledButton(
       child: const Text("patcher"),
       onPressed: () async {
-        doClassPatcher(_uploadValue);
+        compute(doClassPatcher,_uploadValue);
       })
 ]);
 

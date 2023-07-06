@@ -9,8 +9,7 @@ import 'package:rosa/pages/widgets/prompts.dart';
 import 'package:win32_registry/win32_registry.dart';
 import 'package:archive/archive_io.dart';
 
-//BUG WILL LET THE APP NO RESPONSE
-void unzip(String path, String out) {
+Future<void> unzip(String path, String out) async {
   final bytes = File(path).readAsBytesSync();
 
   final archive = ZipDecoder().decodeBytes(bytes);
@@ -23,7 +22,7 @@ void unzip(String path, String out) {
         ..createSync(recursive: true)
         ..writeAsBytesSync(data);
     } else {
-      Directory(out + filename).create(recursive: true);
+      await Directory(out + filename).create(recursive: true);
     }
   }
 }
@@ -67,7 +66,7 @@ void runProxyTasks(List<String> tasks) async {
                       "https://github.com/H2Sxxa/Rosa/blob/bin/application/proxy.zip"),
                   "rosa_Data/bin/proxy.zip");
             }
-            unzip("rosa_Data/bin/proxy.zip", "rosa_Data/bin/");
+            await unzip("rosa_Data/bin/proxy.zip", "rosa_Data/bin/");
             Process.runSync(
                 "start",
                 [
