@@ -65,10 +65,27 @@ void patchJar(String path, Map patchmap) async {
   }
 }
 
-void repackJar() {}
-void replaceJar() {
+void repackJar(String name, String path) {
+  var rootDir = Directory(path);
+  var encoder = ZipFileEncoder();
+  encoder.create("${rootDir.parent.path}/$name");
+  for (var i in rootDir.listSync()) {
+    encoder.addFile(File(i.absolute.path));
+  }
+  encoder.close();
+}
+
+void replaceJar(String newpath, String oldpath) async {
+  //remove jar-9,let gradle regenerate
   var rmdirt = Directory("${getGradleCacheRoot().path}caches/modules-2/jars-9");
   if (rmdirt.existsSync()) {
-    rmdirt.deleteSync(recursive: true);
+    rmdirt.delete(recursive: true);
   }
+
+  var oldjar = File(oldpath);
+  if (oldjar.existsSync()) {
+    oldjar.delete();
+  }
+
+  File(newpath).copy(oldpath);
 }
