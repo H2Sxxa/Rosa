@@ -1,4 +1,6 @@
 {
+    "package":"...",
+    "name":"...",
     "manifest":[
       {
         "location":"net/minecraftforge/gradle/common/tasks/DownloadAssets.class",
