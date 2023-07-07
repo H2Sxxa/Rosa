@@ -95,9 +95,10 @@ var pageClassPatcher = ScaffoldPage.scrollable(children: [
         }),
   ),
   FilledButton(
-      child: const Text("patcher"),
+      child: const Text("patch"),
       onPressed: () async {
-        compute(doClassPatcher,_uploadValue);
+        await showConDialog(Text(await compute(doClassPatcher, _uploadValue)),
+            getTranslation("feedback"));
       })
 ]);
 
@@ -138,9 +139,7 @@ var pageAbout = MarkdownFileBuilder(
 
 var pageDoc = ScaffoldPage.scrollable(children: [
   MarkdownFileBuilder(path: "${getI18nfullPath()}md/doc.md", ispage: false),
-  const SizedBox(
-    height: 20,
-  ),
+  sizedBox20,
   Card(
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -160,15 +159,11 @@ var _uploadtext = '';
 var pagePastebin = ScaffoldPage.scrollable(children: [
   MarkdownFileBuilder(
       path: "${getI18nfullPath()}md/pastebin.md", ispage: false),
-  const SizedBox(
-    height: 20,
-  ),
+  sizedBox20,
   Card(
       child: Wrap(
     children: [
-      const SizedBox(
-        height: 40,
-      ),
+      sizedBox40,
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -237,9 +232,7 @@ var pagePastebin = ScaffoldPage.scrollable(children: [
 var pageSettings = ScaffoldPage.scrollable(children: [
   MarkdownFileBuilder(
       path: "${getI18nfullPath()}md/settings/part0.md", ispage: false),
-  const SizedBox(
-    height: 20,
-  ),
+  sizedBox20,
   Row(
     mainAxisAlignment: MainAxisAlignment.spaceAround,
     children: [
@@ -276,7 +269,17 @@ var pageSettings = ScaffoldPage.scrollable(children: [
           writeJsonValue("fontfamily", value);
           refreshState();
         },
-      )
+      ),
     ],
+  ),
+  sizedBox40,
+  MarkdownFileBuilder(
+      path: "${getI18nfullPath()}md/settings/part1.md", ispage: false),
+  sizedBox20,
+  NumberBox(
+    value: getJsonValue("textscale") as double,
+    onChanged: (value) => writeJsonValue("textscale", value),
+    smallChange: 0.1,
+    mode: SpinButtonPlacementMode.none,
   )
 ]);

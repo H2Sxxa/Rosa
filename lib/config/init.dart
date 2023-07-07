@@ -12,6 +12,7 @@ void initConfig() {
     "fontfamily": "default",
     "title": "ROSA - Setup the dev environment",
     "thememode": 0,
+    "textscale": 1.2,
     "usemcreator": false,
   });
 

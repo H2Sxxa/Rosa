@@ -38,7 +38,7 @@ class MarkdownStringBuilder extends StatelessWidget {
   MarkdownStyleSheet getTheme(BuildContext context) {
     TextStyle commonstyle = TextStyle(fontFamily: getJsonValue("fontfamily"));
     return MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
-      textScaleFactor: 1.2,
+      textScaleFactor: getJsonValue("textscale"),
       h1: commonstyle,
       h2: commonstyle,
       h3: commonstyle,

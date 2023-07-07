@@ -9,7 +9,6 @@ import 'package:rosa/client/execute.dart';
 import 'package:rosa/client/get.dart';
 import 'package:rosa/config/json.dart';
 import 'package:rosa/const.dart';
-import 'package:rosa/pages/widgets/prompts.dart';
 
 Directory getGradleCacheRoot() {
   if (!getJsonValue("usemcreator")) {
@@ -66,7 +65,7 @@ Future<void> patchJar(String path, List patchmaplist) async {
   }
   await unzip(copyf.path, targetRoot);
   for (var i in patchmaplist) {
-    print(i);
+    iprint(i);
     await Dio().download(getGithubUri(i["uri"]), targetRoot + i["location"]);
   }
 }
@@ -101,18 +100,21 @@ Future<void> replaceJar(String newpath, String oldpath) async {
   File(newpath).copy(oldpath);
 }
 
-Future<void> doClassPatcher(String pluginname) async {
+Future<String> doClassPatcher(String pluginname) async {
   var infomap = jsonDecode((await Dio().get(getGithubUri(getGithubUriMap(
           "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/$pluginname/package.json",
           "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/$pluginname/package.json"))))
       .data);
   var jarpath =
       await findcopyJarfromPackagepath(infomap["package"], infomap["name"]);
+  if (jarpath == "") {
+    return "No such file";
+  }
   await patchJar(jarpath, infomap["manifest"]);
   await repackJar(basename(jarpath),
       "rosa_Data/caches/${basenameWithoutExtension(jarpath)}_patch/");
   await replaceJar("rosa_Data/caches/${basename(jarpath)}", jarpath);
-  iprint("Finish");
+  return "Finish";
 }
 
 void iprint(dynamic obj) {
