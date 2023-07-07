@@ -1,20 +1,22 @@
 {
-    "package":"...",
-    "name":"...",
-    "manifest":[
-      {
-        "location":"net/minecraftforge/gradle/common/tasks/DownloadAssets.class",
-        "uri":{
-          "blob":"https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/fg50/DownloadAssets.class",
-          "raw":"https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/fg50/DownloadAssets.class"
+    "package": "...",
+    "name": "forgegradle",
+    "manifest": [
+        {
+            "name": "DownloadAssets.class",
+            "location": "net/minecraftforge/gradle/common/tasks/DownloadAssets.class",
+            "uri": {
+                "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/fg50/DownloadAssets.class",
+                "raw": "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/fg50/DownloadAssets.class"
+            }
+        },
+        {
+            "name": "Utils.class",
+            "location": "net/minecraftforge/gradle/common/util/Utils.class",
+            "uri": {
+                "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/fg50/Utils.class",
+                "raw": "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/fg50/Utils.class"
+            }
         }
-      },
-      {
-        "location":"net/minecraftforge/gradle/common/util/Utils.class",
-        "uri":{
-          "blob":"https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/fg50/Utils.class",
-          "raw":"https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/fg50/Utils.class"
-        }
-      }
     ]
 }

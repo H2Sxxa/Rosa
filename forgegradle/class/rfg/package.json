@@ -1,20 +1,46 @@
 {
-    "package":"com.gtnewhorizons/retrofuturagradle",
-    "name":"retrofuturagradle",
-    "manifest":[
-      {
-        "location":"com/gtnewhorizons/retrofuturagradle/minecraft/DownloadAssetsTask.class",
-        "uri":{
-          "blob":"https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/rfg/DownloadAssetsTask.class",
-          "raw":"https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/rfg/DownloadAssetsTask.class"
+    "package": "com.gtnewhorizons/retrofuturagradle",
+    "name": "retrofuturagradle",
+    "manifest": [
+        {
+            "name": "AssetManifest.class",
+            "location": "com/gtnewhorizons/retrofuturagradle/minecraft/AssetManifest.class",
+            "uri": {
+                "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/rfg/AssetManifest.class",
+                "raw": "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/rfg/AssetManifest.class"
+            }
+        },
+        {
+            "name": "Constants.class",
+            "location": "com/gtnewhorizons/retrofuturagradle/Constants.class",
+            "uri": {
+                "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/rfg/Constants.class",
+                "raw": "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/rfg/Constants.class"
+            }
+        },
+        {
+            "name": "DownloadAssetsTask.class",
+            "location": "com/gtnewhorizons/retrofuturagradle/minecraft/DownloadAssetsTask.class",
+            "uri": {
+                "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/rfg/DownloadAssetsTask.class",
+                "raw": "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/rfg/DownloadAssetsTask.class"
+            }
+        },
+        {
+            "name": "MinecraftTasks.class",
+            "location": "com/gtnewhorizons/retrofuturagradle/minecraft/MinecraftTasks.class",
+            "uri": {
+                "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/rfg/MinecraftTasks.class",
+                "raw": "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/rfg/MinecraftTasks.class"
+            }
+        },
+        {
+            "name": "SharedMCPTasks.class",
+            "location": "com/gtnewhorizons/retrofuturagradle/mcp/SharedMCPTasks.class",
+            "uri": {
+                "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/rfg/SharedMCPTasks.class",
+                "raw": "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/rfg/SharedMCPTasks.class"
+            }
         }
-      },
-      {
-        "location":"com/gtnewhorizons/retrofuturagradle/minecraft/MinecraftTasks.class",
-        "uri":{
-          "blob":"https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/rfg/MinecraftTasks.class",
-          "raw":"https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/rfg/MinecraftTasks.class"
-        }
-      }
     ]
 }

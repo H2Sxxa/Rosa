@@ -2,7 +2,7 @@ https://launchermeta.mojang.com/mc/game/version_manifest.json
 ↓
 https://download.mcbbs.net/mc/game/version_manifest.json
 
-http://resources.download.minecraft.net/
+https://resources.download.minecraft.net/
 ↓
 https://download.mcbbs.net/assets/
 
