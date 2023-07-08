@@ -73,13 +73,13 @@ Future<void> patchJar(String path, List patchmaplist) async {
 Future<void> repackJar(String name, String path) async {
   var rootDir = Directory(path);
   var encoder = ZipFileEncoder();
-  encoder.create("${rootDir.parent.path}/$name");
+  encoder.create("${rootDir.parent.path}/$name", level: 5);
   for (var i in rootDir.listSync()) {
     iprint(i.path);
     if (i.statSync().type == FileSystemEntityType.file) {
-      encoder.addFile(File(i.absolute.path));
+      encoder.addFile(File(i.absolute.path), basename(i.path), 5);
     } else {
-      encoder.addDirectory(Directory(i.absolute.path));
+      encoder.addDirectory(Directory(i.absolute.path), level: 5);
     }
   }
   encoder.close();
