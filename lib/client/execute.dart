@@ -7,25 +7,6 @@ import 'package:rosa/config/json.dart';
 import 'package:rosa/const.dart';
 import 'package:rosa/pages/widgets/prompts.dart';
 import 'package:win32_registry/win32_registry.dart';
-import 'package:archive/archive_io.dart';
-
-Future<void> unzip(String path, String out) async {
-  final bytes = File(path).readAsBytesSync();
-
-  final archive = ZipDecoder().decodeBytes(bytes);
-
-  for (final file in archive) {
-    final filename = file.name;
-    if (file.isFile) {
-      final data = file.content as List<int>;
-      File(out + filename)
-        ..createSync(recursive: true)
-        ..writeAsBytesSync(data);
-    } else {
-      await Directory(out + filename).create(recursive: true);
-    }
-  }
-}
 
 void registProxifier() {
   try {
@@ -62,11 +43,14 @@ void runProxyTasks(List<String> tasks) async {
           {
             if (!File("rosa_Data/bin/proxy.zip").existsSync()) {
               await getfile(
-                  getGithubStuffUri(
-                      "https://github.com/H2Sxxa/Rosa/blob/bin/application/proxy.zip"),
+                  getGithubUri(getGithubUriMap(
+                      "https://github.com/H2Sxxa/Rosa/blob/bin/application/proxy.zip",
+                      "https://github.com/H2Sxxa/Rosa/raw/bin/application/proxy.zip")),
                   "rosa_Data/bin/proxy.zip");
             }
-            await unzip("rosa_Data/bin/proxy.zip", "rosa_Data/bin/");
+            var executer = await get7zExecuter();
+            executer.unzipSync(
+                File("rosa_Data/bin/proxy.zip"), Directory("rosa_Data/bin"));
             Process.runSync(
                 "start",
                 [
@@ -128,7 +112,7 @@ void setupJDKs(List jdks) async {
   String feedbacktext = "";
   for (Map jdk in jdks) {
     var name = jdk["name"];
-    var uri = getGithubStuffUri(jdk["uri"]);
+    var uri = getGithubUri(getGithubUriMap(jdk["uri"], jdk["uri"]));
     try {
       await Dio().downloadUri(
           Uri.parse(uri), "$userProfile.mcreator/gradle/jdks/$name");

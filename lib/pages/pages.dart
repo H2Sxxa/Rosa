@@ -146,7 +146,7 @@ var pageDoc = ScaffoldPage.scrollable(children: [
       children: [
         ComboBox(
           placeholder: const Text("document list"),
-          items: const [ComboBoxItem(child: Text("txt"))],
+          items: const [ComboBoxItem(child: Text("dev"))],
           onChanged: (value) => {},
         ),
         Button(child: const Text("open"), onPressed: () {})
@@ -281,5 +281,38 @@ var pageSettings = ScaffoldPage.scrollable(children: [
     onChanged: (value) => writeJsonValue("textscale", value),
     smallChange: 0.1,
     mode: SpinButtonPlacementMode.none,
+  ),
+  sizedBox40,
+  MarkdownFileBuilder(
+      path: "${getI18nfullPath()}md/settings/part2.md", ispage: false),
+  sizedBox20,
+  Row(
+    mainAxisAlignment: MainAxisAlignment.spaceAround,
+    children: [
+      ComboBox(
+        placeholder: Text(getTranslation("ghproxy")),
+        items: [
+          const ComboBoxItem(
+            value: "https://ghproxy.net/",
+            child: Text("ghproxy.net"),
+          ),
+          const ComboBoxItem(
+              value: "https://ghproxy.com/", child: Text("ghproxy.com")),
+          ComboBoxItem(value: "", child: Text(getTranslation("none")))
+        ],
+        onChanged: (value) => writeJsonValue("ghproxy", value),
+      ),
+      ComboBox(
+        placeholder: Text(getTranslation("usemcreator")),
+        items: [
+          ComboBoxItem(
+            value: true,
+            child: Text(getTranslation("true")),
+          ),
+          ComboBoxItem(value: false, child: Text(getTranslation("false"))),
+        ],
+        onChanged: (value) => writeJsonValue("usemcreator", value),
+      )
+    ],
   )
 ]);

@@ -2,10 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:archive/archive_io.dart';
 import 'package:dio/dio.dart';
 import 'package:path/path.dart';
-import 'package:rosa/client/execute.dart';
 import 'package:rosa/client/get.dart';
 import 'package:rosa/config/json.dart';
 import 'package:rosa/const.dart';
@@ -56,48 +54,21 @@ Future<void> patchJar(String path, List patchmaplist) async {
   if (File(absolute("rosa_Data/caches/${basename(path)}.old")).existsSync()) {
     File(absolute("rosa_Data/caches/${basename(path)}.old")).deleteSync();
   }
-  var copyf =
-      File(path).copySync(absolute("rosa_Data/caches/${basename(path)}.old"));
-  var targetRoot =
-      absolute("rosa_Data/caches/${basenameWithoutExtension(path)}_patch/");
-  if (!Directory(targetRoot).existsSync()) {
-    await Directory(targetRoot).create(recursive: true);
-  }
-  await unzip(copyf.path, targetRoot);
+  File(path).copySync(absolute("rosa_Data/caches/${basename(path)}.old"));
   for (var i in patchmaplist) {
-    iprint(i);
-    await Dio().download(getGithubUri(i["uri"]), targetRoot + i["location"]);
+    await Dio().download(getGithubUri(i["uri"]),
+        "rosa_Data/caches/${basenameWithoutExtension(path)}/${i["location"]}");
   }
-}
-
-Future<void> repackJar(String name, String path) async {
-  var rootDir = Directory(path);
-  var encoder = ZipFileEncoder();
-  encoder.create("${rootDir.parent.path}/$name", level: 5);
-  for (var i in rootDir.listSync()) {
-    iprint(i.path);
-    if (i.statSync().type == FileSystemEntityType.file) {
-      encoder.addFile(File(i.absolute.path), basename(i.path), 5);
-    } else {
-      encoder.addDirectory(Directory(i.absolute.path), level: 5);
-    }
+  var executer = await get7zExecuter();
+  for (var i in Directory("rosa_Data/caches/${basenameWithoutExtension(path)}")
+      .listSync()) {
+    executer.addFilefromDirSync(File(path), i);
   }
-  encoder.close();
-}
 
-Future<void> replaceJar(String newpath, String oldpath) async {
-  //remove jar-9,let gradle regenerate
   var rmdirt = Directory("${getGradleCacheRoot().path}caches/jars-9");
   if (rmdirt.existsSync()) {
     rmdirt.delete(recursive: true);
   }
-
-  var oldjar = File(oldpath);
-  if (oldjar.existsSync()) {
-    oldjar.delete();
-  }
-
-  File(newpath).copy(oldpath);
 }
 
 Future<String> doClassPatcher(String pluginname) async {
@@ -111,13 +82,5 @@ Future<String> doClassPatcher(String pluginname) async {
     return "No such file";
   }
   await patchJar(jarpath, infomap["manifest"]);
-  await repackJar(basename(jarpath),
-      "rosa_Data/caches/${basenameWithoutExtension(jarpath)}_patch/");
-  await replaceJar("rosa_Data/caches/${basename(jarpath)}", jarpath);
   return "Finish";
-}
-
-void iprint(dynamic obj) {
-  // ignore: avoid_print
-  print(obj);
 }

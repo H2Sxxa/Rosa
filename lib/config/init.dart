@@ -14,6 +14,7 @@ void initConfig() {
     "thememode": 0,
     "textscale": 1.2,
     "usemcreator": false,
+    "ghproxy": "https://ghproxy.net/"
   });
 
   initManifestMap({
@@ -54,7 +55,12 @@ void initConfig() {
     "importset": "导入设置",
     "notice_upload": "注意不要上传过于频繁",
     "erroretry": "错误，请重试",
-    "classpatcher": "镜像修补"
+    "classpatcher": "镜像修补",
+    "ghproxy": "Github代理",
+    "none": "无",
+    "true": "是",
+    "false": "否",
+    "usemcreator": "使用MCreator"
   });
 }
 
