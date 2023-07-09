@@ -1,10 +1,10 @@
 {
   "package":"....",
-  "name":"forgegradle",
+  "name":"ForgeGradle",
   "manifest":[
       {
             "name": "DownloadAssetsTask.class",
-            "parent": "net/minecraftforge/gradle/common/task",
+            "location": "net/minecraftforge/gradle/common/task/DownloadAssetsTask.class",
             "uri": {
                 "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/fg30/DownloadAssetsTask.class",
                 "raw": "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/fg30/DownloadAssetsTask.class"
@@ -12,7 +12,7 @@
       },
       {
             "name": "MinecraftRepo.class",
-            "parent": "net/minecraftforge/gradle/common/util",
+            "location": "net/minecraftforge/gradle/common/util/MinecraftRepo.class",
             "uri": {
                 "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/fg30/MinecraftRepo.class",
                 "raw": "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/fg30/MinecraftRepo.class"
@@ -20,7 +20,7 @@
       },
      {
             "name": "MCPPlugin.class",
-            "parent": "net/minecraftforge/gradle/mcp",
+            "location": "net/minecraftforge/gradle/mcp/MCPPlugin.class",
             "uri": {
                 "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/fg30/MCPPlugin.class",
                 "raw": "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/fg30/MCPPlugin.class"

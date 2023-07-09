@@ -1,6 +1,6 @@
 {
     "package": "net.minecraftforge.gradle",
-    "name": "forgegradle",
+    "name": "ForgeGradle",
     "manifest": [
         {
             "name": "DownloadAssetsTask$GetAssetTask.class",
