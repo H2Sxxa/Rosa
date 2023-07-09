@@ -1,0 +1,24 @@
+{
+    "package": "...",
+    "name": "forgegradle",
+    "manifest": [
+        {
+            "name": "DownloadAssetsTask$GetAssetTask.class",
+            "parent": "net/minecraftforge/gradle/tasks",
+            "location": "net/minecraftforge/gradle/tasks/DownloadAssets.class",
+            "uri": {
+                "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/fg23/DownloadAssetsTask$GetAssetTask.class",
+                "raw": "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/fg23/DownloadAssetsTask$GetAssetTask.class"
+            }
+        },
+        {
+            "name": "PatcherPlugin.class",
+            "parent": "net/minecraftforge/gradle/patcher",
+            "location": "net/minecraftforge/gradle/patcher/Utils.class",
+            "uri": {
+                "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/fg23/PatcherPlugin.class",
+                "raw": "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/fg23/PatcherPlugin.class"
+            }
+        }
+    ]
+}
