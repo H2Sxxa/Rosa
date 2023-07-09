@@ -1,6 +1,15 @@
+# 次要
+
 https://launchermeta.mojang.com/mc/game/version_manifest.json
 ↓
 https://download.mcbbs.net/mc/game/version_manifest.json
+
+https://maven.minecraftforge.net/de/oceanlabs/mcp/versions.json
+↓
+https://download.mcbbs.net/maven/de/oceanlabs/mcp/versions.json
+
+
+# 重要
 
 https://resources.download.minecraft.net/
 ↓
@@ -10,7 +19,3 @@ https://libraries.minecraft.net/
 https://maven.minecraftforge.net
 ↓
 https://download.mcbbs.net/maven
-
-https://maven.minecraftforge.net/de/oceanlabs/mcp/versions.json
-↓
-https://download.mcbbs.net/maven/de/oceanlabs/mcp/versions.json

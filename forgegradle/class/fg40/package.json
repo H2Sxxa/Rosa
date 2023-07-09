@@ -1,0 +1,62 @@
+{
+    "package": "...",
+    "name": "ForgeGradle",
+    "manifest": [
+        {
+            "name": "DownloadAssets.class",
+            "location": "net/minecraftforge/gradle/common/task/DownloadAssets.class",
+            "uri": {
+                "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/fg40/DownloadAssets.class",
+                "raw": "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/fg40/DownloadAssets.class"
+            }
+        },
+        {
+            "name": "MCPConfigV1$Function.class",
+            "location": "net/minecraftforge/gradle/common/config/MCPConfigV1$Function.class",
+            "uri": {
+                "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/fg40/MCPConfigV1$Function.class",
+                "raw": "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/fg40/MCPConfigV1$Function.class"
+            }
+        },
+        {
+            "name": "MCPPlugin.class",
+            "location": "net/minecraftforge/gradle/mcp/MCPPlugin.class",
+            "uri": {
+                "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/fg40/MCPPlugin.class",
+                "raw": "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/fg40/MCPPlugin.class"
+            }
+        },
+        {
+            "name": "MinecraftRepo.class",
+            "location": "net/minecraftforge/gradle/common/util/MinecraftRepo.class",
+            "uri": {
+                "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/fg40/MinecraftRepo.class",
+                "raw": "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/fg40/MinecraftRepo.class"
+            }
+        },
+        {
+            "name": "PatcherPlugin.class",
+            "location": "net/minecraftforge/gradle/patcher/PatcherPlugin.class",
+            "uri": {
+                "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/fg40/PatcherPlugin.class",
+                "raw": "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/fg40/PatcherPlugin.class"
+            }
+        },
+        {
+            "name": "UserDevPlugin.class",
+            "location": "net/minecraftforge/gradle/userdev/UserDevPlugin.class",
+            "uri": {
+                "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/fg40/UserDevPlugin.class",
+                "raw": "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/fg40/UserDevPlugin.class"
+            }
+        },
+        {
+            "name": "Utils.class",
+            "location": "net/minecraftforge/gradle/common/util/Utils.class",
+            "uri": {
+                "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/fg40/Utils.class",
+                "raw": "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/fg40/Utils.class"
+            }
+        }
+    ]
+}

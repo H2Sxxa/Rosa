@@ -19,7 +19,6 @@ for pkg in localls:
                     resultmanifest.append(
                         {
                             "name": entry,
-                            "parent": entry2["parent"],
                             "location": entry2["location"],
                             "uri": {
                                 "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/%s/%s"
@@ -34,7 +33,6 @@ for pkg in localls:
                 resultmanifest.append(
                     {
                         "name": entry,
-                        "parent": "",
                         "location": "",
                         "uri": {
                             "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/%s/%s"
