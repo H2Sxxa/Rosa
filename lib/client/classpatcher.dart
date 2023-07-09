@@ -87,7 +87,7 @@ Future<void> repackJar(String name, String path) async {
 
 Future<void> replaceJar(String newpath, String oldpath) async {
   //remove jar-9,let gradle regenerate
-  var rmdirt = Directory("${getGradleCacheRoot().path}caches/modules-2/jars-9");
+  var rmdirt = Directory("${getGradleCacheRoot().path}caches/jars-9");
   if (rmdirt.existsSync()) {
     rmdirt.delete(recursive: true);
   }
