@@ -4,6 +4,7 @@
     "manifest": [
         {
             "name": "DownloadAssets.class",
+            "parent": "net/minecraftforge/gradle/common/tasks",
             "location": "net/minecraftforge/gradle/common/tasks/DownloadAssets.class",
             "uri": {
                 "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/fg50/DownloadAssets.class",
@@ -12,6 +13,7 @@
         },
         {
             "name": "Utils.class",
+            "parent": "net/minecraftforge/gradle/common/util",
             "location": "net/minecraftforge/gradle/common/util/Utils.class",
             "uri": {
                 "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/fg50/Utils.class",

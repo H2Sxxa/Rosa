@@ -4,6 +4,7 @@
     "manifest": [
         {
             "name": "Constants.class",
+            "parent": "com/gtnewhorizons/retrofuturagradle",
             "location": "com/gtnewhorizons/retrofuturagradle/Constants.class",
             "uri": {
                 "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/rfg/Constants.class",
@@ -12,6 +13,7 @@
         },
         {
             "name": "DownloadAssetsTask.class",
+            "parent": "com/gtnewhorizons/retrofuturagradle/minecraft",
             "location": "com/gtnewhorizons/retrofuturagradle/minecraft/DownloadAssetsTask.class",
             "uri": {
                 "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/rfg/DownloadAssetsTask.class",
@@ -20,6 +22,7 @@
         },
         {
             "name": "MinecraftTasks.class",
+            "parent": "com/gtnewhorizons/retrofuturagradle/minecraft",
             "location": "com/gtnewhorizons/retrofuturagradle/minecraft/MinecraftTasks.class",
             "uri": {
                 "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/rfg/MinecraftTasks.class",
