@@ -1,5 +1,5 @@
 {
-    "package": "...",
+    "package": "net.minecraftforge.gradle",
     "name": "forgegradle",
     "manifest": [
         {
