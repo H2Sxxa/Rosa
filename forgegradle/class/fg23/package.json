@@ -1,13 +1,29 @@
 {
     "package": "net.minecraftforge.gradle/ForgeGradle",
-    "name": "ForgeGradle",
+    "name": "ForgeGradle-2.3",
     "manifest": [
+        {
+            "name": "BasePlugin$1.class",
+            "location": "net/minecraftforge/gradle/common/BasePlugin$1.class",
+            "uri": {
+                "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/fg23/BasePlugin$1.class",
+                "raw": "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/fg23/BasePlugin$1.class"
+            }
+        },
         {
             "name": "DownloadAssetsTask$GetAssetTask.class",
             "location": "net/minecraftforge/gradle/tasks/DownloadAssetsTask$GetAssetTask.class",
             "uri": {
                 "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/fg23/DownloadAssetsTask$GetAssetTask.class",
                 "raw": "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/fg23/DownloadAssetsTask$GetAssetTask.class"
+            }
+        },
+        {
+            "name": "Library.class",
+            "location": "net/minecraftforge/gradle/util/json/version/Library.class",
+            "uri": {
+                "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/fg23/Library.class",
+                "raw": "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/fg23/Library.class"
             }
         },
         {

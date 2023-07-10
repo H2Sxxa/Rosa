@@ -1,30 +1,30 @@
 {
-  "package":"net.minecraftforge.gradle/ForgeGradle",
-  "name":"ForgeGradle",
-  "manifest":[
-      {
-            "name": "DownloadAssetsTask.class",
-            "location": "net/minecraftforge/gradle/common/task/DownloadAssetsTask.class",
+    "package": "net.minecraftforge.gradle/ForgeGradle",
+    "name": "ForgeGradle",
+    "manifest": [
+        {
+            "name": "DownloadAssets.class",
+            "location": "",
             "uri": {
-                "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/fg30/DownloadAssetsTask.class",
-                "raw": "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/fg30/DownloadAssetsTask.class"
+                "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/fg30/DownloadAssets.class",
+                "raw": "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/fg30/DownloadAssets.class"
             }
-      },
-      {
-            "name": "MinecraftRepo.class",
-            "location": "net/minecraftforge/gradle/common/util/MinecraftRepo.class",
-            "uri": {
-                "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/fg30/MinecraftRepo.class",
-                "raw": "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/fg30/MinecraftRepo.class"
-            }
-      },
-     {
+        },
+        {
             "name": "MCPPlugin.class",
             "location": "net/minecraftforge/gradle/mcp/MCPPlugin.class",
             "uri": {
                 "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/fg30/MCPPlugin.class",
                 "raw": "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/fg30/MCPPlugin.class"
             }
-      }
-  ]
+        },
+        {
+            "name": "MinecraftRepo.class",
+            "location": "net/minecraftforge/gradle/common/util/MinecraftRepo.class",
+            "uri": {
+                "blob": "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/fg30/MinecraftRepo.class",
+                "raw": "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/fg30/MinecraftRepo.class"
+            }
+        }
+    ]
 }
