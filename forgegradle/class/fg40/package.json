@@ -1,6 +1,6 @@
 {
     "package": "net.minecraftforge.gradle/ForgeGradle",
-    "name": "ForgeGradle",
+    "name": "ForgeGradle-4",
     "manifest": [
         {
             "name": "DownloadAssets.class",
