@@ -1,4 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter_acrylic/flutter_acrylic.dart';
+import 'package:rosa/client/applog.dart';
 import 'package:rosa/config/init.dart';
 import 'package:rosa/config/json.dart';
 import 'package:rosa/const.dart';
@@ -6,10 +8,31 @@ import 'package:rosa/pages/pages.dart';
 import 'package:system_theme/system_theme.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 
+RosaLogger appLogger = RosaLogger();
+
+WindowEffect getWinEffect() {
+  switch (getJsonValue("wineffect")) {
+    case 0:
+      return WindowEffect.disabled;
+    case 1:
+      return WindowEffect.mica;
+    case 2:
+      return WindowEffect.acrylic;
+    default:
+      return WindowEffect.disabled;
+  }
+}
+
 void main() async {
+  appLogger.i("Start Application with init!");
   systemFontFamilies = await initFontFamilies();
   initConfig();
   WidgetsFlutterBinding.ensureInitialized();
+  await Window.initialize();
+  await Window.setEffect(
+    effect: getWinEffect(),
+  );
+  appLogger.i("Load Config", getJsonMap());
   runApp(
     const MyApp(),
   );
@@ -23,6 +46,8 @@ void main() async {
 }
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+GlobalKey paneKey = GlobalKey();
+
 late dynamic globalState;
 void refreshState() {
   globalState.refresh();
@@ -73,7 +98,25 @@ class _MyAppState extends State<MyApp> {
         break;
     }
 
+    Color? getBackColor() {
+      if (getJsonValue("wineffect") != 0) {
+        return Colors.transparent;
+      } else {
+        return null;
+      }
+    }
+
     return FluentApp(
+        builder: (context, child) {
+          return Directionality(
+            textDirection: TextDirection.ltr,
+            child: NavigationPaneTheme(
+              data: NavigationPaneThemeData(
+                backgroundColor: getBackColor()),
+              child: child!,
+            ),
+          );
+        },
         themeMode: thememode,
         navigatorKey: navigatorKey,
         theme: FluentThemeData(
@@ -94,9 +137,12 @@ class _MyAppState extends State<MyApp> {
             children: pages,
           ),
           pane: NavigationPane(
+              key: paneKey,
               displayMode: PaneDisplayMode.auto,
               selected: _pageindex,
-              onChanged: (i) => setState(() => _pageindex = i),
+              onChanged: (i) {
+                setState(() => _pageindex = i);
+              },
               items: [
                 PaneItem(
                   icon: const Icon(FluentIcons.home),

@@ -4,14 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:rosa/config/json.dart';
 import 'package:rosa/win/szip.dart';
 
-Future<void> getfile(String uri, String path) async {
-  await Dio().download(uri, path);
-}
-
-void getfileSync(String uri, String path) {
-  Dio().download(uri, path);
-}
-
 String getGithubUri(Map urimap) {
   if (getJsonValue("ghproxy") == "") {
     return urimap["raw"];

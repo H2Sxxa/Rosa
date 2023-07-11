@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_acrylic/flutter_acrylic.dart';
 import 'package:rosa/client/classpatcher.dart';
 import 'package:rosa/client/execute.dart';
 import 'package:rosa/client/get.dart';
@@ -56,6 +57,7 @@ var pageProxy = ScaffoldPage.scrollable(children: [
   FilledButton(
       child: const Text("Run it!"),
       onPressed: () {
+        showInfoBar(getTranslation("info"), getTranslation("start_task"));
         runProxyTasks(_proxySelect);
       })
 ]);
@@ -63,7 +65,7 @@ var pageProxy = ScaffoldPage.scrollable(children: [
 final lazyPatcherTarget = [
   TreeViewItem(
     content: const Text('GradlePlugins'),
-    value: 'lazy_load',
+    value: "",
     lazy: true,
     children: [],
     onExpandToggle: (item, getsExpanded) async {
@@ -97,6 +99,9 @@ var pageClassPatcher = ScaffoldPage.scrollable(children: [
   FilledButton(
       child: const Text("patch"),
       onPressed: () async {
+        if (_uploadValue == "") {
+          return;
+        }
         await showConDialog(Text(await compute(doClassPatcher, _uploadValue)),
             getTranslation("feedback"));
       })
@@ -173,12 +178,15 @@ var pagePastebin = ScaffoldPage.scrollable(children: [
                 var result =
                     await showConfirmDialog(getTranslation("notice_upload"));
                 if (result) {
+                  showInfoBar(
+                      getTranslation("info"), getTranslation("start_task"));
                   String feedback;
                   try {
                     var response = await newnotemclo(_uploadtext);
                     feedback = response.data["url"];
                   } on Exception catch (_) {
                     feedback = getTranslation("erroretry");
+                    appLogger.e(_.toString());
                   }
                   showConDialog(
                       Card(
@@ -196,6 +204,8 @@ var pagePastebin = ScaffoldPage.scrollable(children: [
                     await showConfirmDialog(getTranslation("notice_upload"));
                 if (result) {
                   String feedback;
+                  showInfoBar(
+                      getTranslation("info"), getTranslation("start_task"));
                   var upload = await selectlog();
                   if (upload == false) {
                     return;
@@ -205,9 +215,7 @@ var pagePastebin = ScaffoldPage.scrollable(children: [
                     feedback = response.data["url"];
                   } on Exception catch (_) {
                     feedback = getTranslation("erroretry");
-
-                    // ignore: avoid_print
-                    print(_);
+                    appLogger.v(_.toString());
                   }
                   showConDialog(
                       Card(
@@ -258,7 +266,22 @@ var pageSettings = ScaffoldPage.scrollable(children: [
         },
       ),
       ComboBox(
-        placeholder: const Text("fonts"),
+        placeholder: Text(getTranslation("wineffect")),
+        items: [
+          ComboBoxItem(value: 0, child: Text(getTranslation("none"))),
+          ComboBoxItem(value: 1, child: Text(getTranslation("mica"))),
+          ComboBoxItem(value: 2, child: Text(getTranslation("acrylic"))),
+        ],
+        onChanged: (value) async {
+          writeJsonValue("wineffect", value);
+          await Window.setEffect(
+            effect: getWinEffect(),
+          );
+          refreshState();
+        },
+      ),
+      ComboBox(
+        placeholder: Text(getTranslation("font")),
         items: List<ComboBoxItem>.generate(
             systemFontFamilies.length,
             (index) => ComboBoxItem(

@@ -5,6 +5,7 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:rosa/client/get.dart';
 import 'package:rosa/config/json.dart';
 import 'package:rosa/const.dart';
+import 'package:rosa/main.dart';
 import 'package:rosa/pages/widgets/prompts.dart';
 import 'package:win32_registry/win32_registry.dart';
 
@@ -42,11 +43,16 @@ void runProxyTasks(List<String> tasks) async {
         case "psi":
           {
             if (!File("rosa_Data/bin/proxy.zip").existsSync()) {
-              await getfile(
-                  getGithubUri(getGithubUriMap(
-                      "https://github.com/H2Sxxa/Rosa/blob/bin/application/proxy.zip",
-                      "https://github.com/H2Sxxa/Rosa/raw/bin/application/proxy.zip")),
-                  "rosa_Data/bin/proxy.zip");
+              appLogger.i("Try to get Proxy package");
+              try {
+                await Dio().download(
+                    getGithubUri(getGithubUriMap(
+                        "https://github.com/H2Sxxa/Rosa/blob/bin/application/proxy.zip",
+                        "https://github.com/H2Sxxa/Rosa/raw/bin/application/proxy.zip")),
+                    "rosa_Data/bin/proxy.zip");
+              } on Exception catch (_) {
+                appLogger.e(_.toString());
+              }
             }
             var executer = await get7zExecuter();
             executer.unzipSync(
@@ -102,23 +108,27 @@ void runProxyTasks(List<String> tasks) async {
       }
     }
   } on Exception catch (_) {
-    showConDialog(Text(_.toString()), "Result");
+    appLogger.e(_.toString());
+    showConDialog(Text(_.toString()), getTranslation("feedback"));
     return;
   }
-  showConDialog(const Text("All Finish"), "Result");
+  showConDialog(Text(getTranslation("finish")), getTranslation("feedback"));
 }
 
 void setupJDKs(List jdks) async {
   String feedbacktext = "";
+  appLogger.i(jdks);
   for (Map jdk in jdks) {
     var name = jdk["name"];
+    appLogger.i("Start download JDK $name");
     var uri = getGithubUri(getGithubUriMap(jdk["uri"], jdk["uri"]));
     try {
-      await Dio().downloadUri(
-          Uri.parse(uri), "$userProfile.mcreator/gradle/jdks/$name");
+      await Dio().download(uri, "$userProfile.mcreator/gradle/jdks/$name");
       feedbacktext = "$feedbacktext$name from $uri \n";
+      appLogger.i(feedbacktext);
     } on Exception catch (_) {
       feedbacktext = "$feedbacktext$_\n";
+      appLogger.e(feedbacktext);
     }
   }
   showConDialog(Text(feedbacktext), getTranslation("feedback"));

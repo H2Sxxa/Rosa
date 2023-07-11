@@ -7,6 +7,7 @@ import 'package:path/path.dart';
 import 'package:rosa/client/get.dart';
 import 'package:rosa/config/json.dart';
 import 'package:rosa/const.dart';
+import 'package:rosa/main.dart';
 
 Directory getGradleCacheRoot() {
   if (!getJsonValue("usemcreator")) {
@@ -56,8 +57,13 @@ Future<void> patchJar(String path, List patchmaplist) async {
   }
   File(path).copySync(absolute("rosa_Data/caches/${basename(path)}.old"));
   for (var i in patchmaplist) {
-    await Dio().download(getGithubUri(i["uri"]),
-        "rosa_Data/caches/${basenameWithoutExtension(path)}/${i["location"]}");
+    try {
+      appLogger.i("download", i);
+      await Dio().download(getGithubUri(i["uri"]),
+          "rosa_Data/caches/${basenameWithoutExtension(path)}/${i["location"]}");
+    } on Exception catch (_) {
+      appLogger.e(_.toString());
+    }
   }
   var executer = await get7zExecuter();
   for (var i in Directory("rosa_Data/caches/${basenameWithoutExtension(path)}")
@@ -72,15 +78,22 @@ Future<void> patchJar(String path, List patchmaplist) async {
 }
 
 Future<String> doClassPatcher(String pluginname) async {
-  var infomap = jsonDecode((await Dio().get(getGithubUri(getGithubUriMap(
-          "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/$pluginname/package.json",
-          "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/$pluginname/package.json"))))
-      .data);
-  var jarpath =
-      await findcopyJarfromPackagepath(infomap["package"], infomap["name"]);
-  if (jarpath == "") {
-    return "No such file";
+  appLogger.i("select fg", pluginname);
+  try {
+    var infomap = jsonDecode((await Dio().get(getGithubUri(getGithubUriMap(
+            "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/$pluginname/package.json",
+            "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/$pluginname/package.json"))))
+        .data);
+    var jarpath =
+        await findcopyJarfromPackagepath(infomap["package"], infomap["name"]);
+    if (jarpath == "") {
+      return getTranslation("cantfindfile");
+    }
+    await patchJar(jarpath, infomap["manifest"]);
+  } on Exception catch (_) {
+    appLogger.e(_.toString());
+    return _.toString();
   }
-  await patchJar(jarpath, infomap["manifest"]);
-  return "Finish";
+  ;
+  return getTranslation("finish");
 }

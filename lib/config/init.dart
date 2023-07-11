@@ -14,7 +14,8 @@ void initConfig() {
     "thememode": 0,
     "textscale": 1.2,
     "usemcreator": false,
-    "ghproxy": "https://ghproxy.net/"
+    "ghproxy": "https://ghproxy.net/",
+    "wineffect": 0
   });
 
   initManifestMap({
@@ -49,7 +50,7 @@ void initConfig() {
     "dark": "深色",
     "light": "浅色",
     "thememode": "主题模式",
-    "feedback": "回馈",
+    "feedback": "结果",
     "start": "启动",
     "regist": "注册",
     "importset": "导入设置",
@@ -60,7 +61,19 @@ void initConfig() {
     "none": "无",
     "true": "是",
     "false": "否",
-    "usemcreator": "使用MCreator"
+    "usemcreator": "使用MCreator",
+    "confirm": "确认",
+    "ok": "好的",
+    "cancel": "取消",
+    "mica": "云母",
+    "acrylic": "亚克力",
+    "font": "字体",
+    "wineffect": "窗口效果",
+    "logfile": "日志文件",
+    "finish": "完成",
+    "cantfindfile": "找不到文件",
+    "info": "通知",
+    "start_task": "开始任务"
   });
 }
 

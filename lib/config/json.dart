@@ -19,6 +19,11 @@ dynamic getJsonValue(String key) {
   return jsonDecode(file.readAsStringSync())[key];
 }
 
+Map getJsonMap() {
+  File file = File(configPath);
+  return jsonDecode(file.readAsStringSync());
+}
+
 void writeJsonValue(String key, dynamic value) {
   File file = File(configPath);
   Map jsonmap = jsonDecode(file.readAsStringSync());
