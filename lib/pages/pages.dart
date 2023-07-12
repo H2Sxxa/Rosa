@@ -16,10 +16,13 @@ import 'package:rosa/pages/widgets/prompts.dart';
 import 'package:rosa/pages/widgets/selector.dart';
 import 'package:rosa/pages/markdown/pagegen.dart';
 
-var pageHome = MarkdownFileBuilder(
-  path: "${getI18nfullPath()}md/home.md",
-  ispage: true,
-);
+var pageHome = ScaffoldPage.scrollable(children: [
+  MarkdownFileBuilder(
+    path: "${getI18nfullPath()}md/home.md",
+    ispage: false,
+  ),
+  getLocalImage("htur.png")
+]);
 
 List<String> _proxySelect = [];
 var pageProxy = ScaffoldPage.scrollable(children: [
@@ -55,7 +58,7 @@ var pageProxy = ScaffoldPage.scrollable(children: [
         ]),
   ),
   FilledButton(
-      child: const Text("Run it!"),
+      child: Text(getTranslation("start")),
       onPressed: () {
         showInfoBar(getTranslation("info"), getTranslation("start_task"));
         runProxyTasks(_proxySelect);
@@ -105,7 +108,7 @@ var pageClassPatcher = ScaffoldPage.scrollable(children: [
         }),
   ),
   FilledButton(
-      child: const Text("patch"),
+      child: Text(getTranslation("start")),
       onPressed: () async {
         if (_uploadValue == "") {
           return;

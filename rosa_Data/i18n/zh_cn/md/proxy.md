@@ -1,4 +1,4 @@
-# 环境配置 🌍
+# Proxifier & Shadowsocks 🚀
 
 ## 说明
 

@@ -47,6 +47,7 @@ class MarkdownStringBuilder extends StatelessWidget {
       h6: commonstyle,
       a: commonstyle,
       p: commonstyle,
+      code: commonstyle.copyWith(fontStyle: FontStyle.italic),
     );
   }
 
