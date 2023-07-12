@@ -9,13 +9,12 @@ import 'package:rosa/client/execute.dart';
 import 'package:rosa/client/get.dart';
 import 'package:rosa/client/post.dart';
 import 'package:rosa/config/json.dart';
+import 'package:rosa/config/i18n.dart';
 import 'package:rosa/const.dart';
 import 'package:rosa/main.dart';
 import 'package:rosa/pages/widgets/prompts.dart';
 import 'package:rosa/pages/widgets/selector.dart';
-
-import '../config/i18n.dart';
-import 'markdown/pagegen.dart';
+import 'package:rosa/pages/markdown/pagegen.dart';
 
 var pageHome = MarkdownFileBuilder(
   path: "${getI18nfullPath()}md/home.md",
@@ -35,22 +34,23 @@ var pageProxy = ScaffoldPage.scrollable(children: [
           }
         },
         items: [
-          TreeViewItem(
-              content: const Text("Install Proxy package"), value: "psi"),
+          TreeViewItem(content: Text(getTranslation("psi")), value: "psi"),
           TreeViewItem(
               content: const Text("Proxifier"),
               value: "p0",
               children: [
-                TreeViewItem(content: const Text("register"), value: "p1"),
-                TreeViewItem(content: const Text("Start"), value: "p2"),
                 TreeViewItem(
-                    content: const Text("Import setting"), value: "p3"),
+                    content: Text(getTranslation("register")), value: "p1"),
+                TreeViewItem(
+                    content: Text(getTranslation("start")), value: "p2"),
+                TreeViewItem(content: Text(getTranslation("p3")), value: "p3"),
               ]),
           TreeViewItem(
               content: const Text("Shadowsocks"),
               value: "s0",
               children: [
-                TreeViewItem(content: const Text("Start"), value: "s1")
+                TreeViewItem(
+                    content: Text(getTranslation("start")), value: "s1")
               ]),
         ]),
   ),
@@ -70,12 +70,20 @@ final lazyPatcherTarget = [
     children: [],
     onExpandToggle: (item, getsExpanded) async {
       if (item.children.isNotEmpty) return;
-      var resp = await Dio().get(getGithubUri(getGithubUriMap(
-          "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/pkg.support.json",
-          "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/pkg.support.json")));
-      for (String i in jsonDecode(resp.data)["supports"]) {
-        item.children
-            .add(TreeViewItem(content: Text(i.toUpperCase()), value: i));
+      try {
+        var resp = await Dio().get(getGithubUri(getGithubUriMap(
+            "https://github.com/H2Sxxa/Rosa/blob/bin/forgegradle/class/pkg.support.json",
+            "https://github.com/H2Sxxa/Rosa/raw/bin/forgegradle/class/pkg.support.json")));
+        for (String i in jsonDecode(resp.data)["supports"]) {
+          item.children
+              .add(TreeViewItem(content: Text(i.toUpperCase()), value: i));
+        }
+      } on Exception catch (_) {
+        showInfoBar(getTranslation("error"), _.toString(), 3);
+        appLogger.e(_.toString());
+        if (item.children.isNotEmpty) {
+          item.children.clear();
+        }
       }
     },
   ),
@@ -102,6 +110,7 @@ var pageClassPatcher = ScaffoldPage.scrollable(children: [
         if (_uploadValue == "") {
           return;
         }
+        showInfoBar(getTranslation("info"), getTranslation("start_task"));
         await showConDialog(Text(await compute(doClassPatcher, _uploadValue)),
             getTranslation("feedback"));
       })
@@ -133,6 +142,7 @@ var pageDownload = ScaffoldPage.scrollable(children: [
   FilledButton(
       child: Text(getTranslation("download")),
       onPressed: () {
+        showInfoBar(getTranslation("info"), getTranslation("start_task"));
         setupJDKs(_jdks);
       }),
 ]);
@@ -154,7 +164,11 @@ var pageDoc = ScaffoldPage.scrollable(children: [
           items: const [ComboBoxItem(child: Text("dev"))],
           onChanged: (value) => {},
         ),
-        Button(child: const Text("open"), onPressed: () {})
+        Button(
+            child: const Text("open"),
+            onPressed: () {
+              showInfoBar("WARN", "Not Ready to use", 2);
+            })
       ],
     ),
   ),
@@ -195,6 +209,9 @@ var pagePastebin = ScaffoldPage.scrollable(children: [
                         string: feedback,
                       )),
                       getTranslation("feedback"));
+                } else {
+                  showInfoBar(
+                      getTranslation("warn"), getTranslation("cancel"), 2);
                 }
               }),
           FilledButton(
@@ -224,6 +241,9 @@ var pagePastebin = ScaffoldPage.scrollable(children: [
                         string: feedback,
                       )),
                       getTranslation("feedback"));
+                } else {
+                  showInfoBar(
+                      getTranslation("warn"), getTranslation("cancel"), 2);
                 }
               })
         ],

@@ -73,7 +73,12 @@ void initConfig() {
     "finish": "完成",
     "cantfindfile": "找不到文件",
     "info": "通知",
-    "start_task": "开始任务"
+    "start_task": "开始任务",
+    "error": "错误",
+    "warn": "警告",
+    "psi": "下载代理功能文件包",
+    "register": "注册",
+    "p3":"导入配置"
   });
 }
 

@@ -50,6 +50,7 @@ GlobalKey paneKey = GlobalKey();
 
 late dynamic globalState;
 void refreshState() {
+  appLogger.i("refresh the state manually");
   globalState.refresh();
 }
 
@@ -111,8 +112,7 @@ class _MyAppState extends State<MyApp> {
           return Directionality(
             textDirection: TextDirection.ltr,
             child: NavigationPaneTheme(
-              data: NavigationPaneThemeData(
-                backgroundColor: getBackColor()),
+              data: NavigationPaneThemeData(backgroundColor: getBackColor()),
               child: child!,
             ),
           );
