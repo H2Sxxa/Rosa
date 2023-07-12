@@ -6,6 +6,7 @@ class RosaLogger {
   final Logger _con = Logger();
   final Logger _file = Logger(
       printer: PrettyPrinter(colors: false),
+      filter: ProductionFilter(),
       output: FileOutput(
           file: File("rosa_Data/latest.log"), overrideExisting: true));
   void v(dynamic message, [dynamic error, StackTrace? stackTrace]) {
