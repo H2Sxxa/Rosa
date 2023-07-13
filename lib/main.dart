@@ -54,7 +54,6 @@ GlobalKey paneKey = GlobalKey();
 
 late dynamic globalState;
 void refreshState() {
-  appLogger.i("refresh the state manually");
   globalState.refresh();
 }
 
