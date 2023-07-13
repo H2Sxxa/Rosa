@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:rosa/config/i18n.dart';
 import 'package:rosa/const.dart';
+import 'package:rosa/pages/pages.dart';
+import 'package:rosa/pages/widgets/setviewgen.dart';
 
 Map initJsonMap(Map initdata) {
   File file = File(configPath);
@@ -29,6 +31,8 @@ void writeJsonValue(String key, dynamic value) {
   Map jsonmap = jsonDecode(file.readAsStringSync());
   jsonmap[key] = value;
   file.writeAsStringSync(jsonEncode(jsonmap));
+  SFVState state = fastviewKey.currentState! as SFVState;
+  state.refresh();
 }
 
 Map initTranslation(Map initdata) {

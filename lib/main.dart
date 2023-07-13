@@ -18,6 +18,10 @@ WindowEffect getWinEffect() {
       return WindowEffect.mica;
     case 2:
       return WindowEffect.acrylic;
+    case 3:
+      return WindowEffect.aero;
+    case 4:
+      return WindowEffect.tabbed;
     default:
       return WindowEffect.disabled;
   }

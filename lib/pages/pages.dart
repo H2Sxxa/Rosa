@@ -15,6 +15,7 @@ import 'package:rosa/main.dart';
 import 'package:rosa/pages/widgets/prompts.dart';
 import 'package:rosa/pages/widgets/selector.dart';
 import 'package:rosa/pages/markdown/pagegen.dart';
+import 'package:rosa/pages/widgets/setviewgen.dart';
 
 var pageHome = ScaffoldPage.scrollable(children: [
   MarkdownFileBuilder(
@@ -260,7 +261,13 @@ var pagePastebin = ScaffoldPage.scrollable(children: [
     ],
   )),
 ]);
+
+GlobalKey fastviewKey = GlobalKey();
 var pageSettings = ScaffoldPage.scrollable(children: [
+  SettingFastViewer(
+    key: fastviewKey,
+  ),
+  sizedBox40,
   MarkdownFileBuilder(
       path: "${getI18nfullPath()}md/settings/part0.md", ispage: false),
   sizedBox20,
@@ -291,9 +298,26 @@ var pageSettings = ScaffoldPage.scrollable(children: [
       ComboBox(
         placeholder: Text(getTranslation("wineffect")),
         items: [
-          ComboBoxItem(value: 0, child: Text(getTranslation("none"))),
-          ComboBoxItem(value: 1, child: Text(getTranslation("mica"))),
-          ComboBoxItem(value: 2, child: Text(getTranslation("acrylic"))),
+          ComboBoxItem(
+            value: 0,
+            child: Text(getTranslation("none")),
+          ),
+          ComboBoxItem(
+            value: 1,
+            child: Text(getTranslation("mica")),
+          ),
+          ComboBoxItem(
+            value: 2,
+            child: Text(getTranslation("acrylic")),
+          ),
+          ComboBoxItem(
+            value: 3,
+            child: Text(getTranslation("aero")),
+          ),
+          ComboBoxItem(
+            value: 4,
+            child: Text(getTranslation("tabbed")),
+          ),
         ],
         onChanged: (value) async {
           writeJsonValue("wineffect", value);
@@ -304,7 +328,7 @@ var pageSettings = ScaffoldPage.scrollable(children: [
         },
       ),
       ComboBox(
-        placeholder: Text(getTranslation("font")),
+        placeholder: Text(getTranslation("fontfamily")),
         items: List<ComboBoxItem>.generate(
             systemFontFamilies.length,
             (index) => ComboBoxItem(

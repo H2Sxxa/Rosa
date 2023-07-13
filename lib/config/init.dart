@@ -67,7 +67,7 @@ void initConfig() {
     "cancel": "取消",
     "mica": "云母",
     "acrylic": "亚克力",
-    "font": "字体",
+    "fontfamily": "字体",
     "wineffect": "窗口效果",
     "logfile": "日志文件",
     "finish": "完成",
@@ -78,7 +78,12 @@ void initConfig() {
     "warn": "警告",
     "psi": "下载代理功能文件包",
     "register": "注册",
-    "p3":"导入配置"
+    "p3": "导入配置",
+    "aero": "毛玻璃 （Aero）",
+    "tabbed": "新云母（Tabbed）",
+    "title": "标题",
+    "localization": "本地化",
+    "textscale": "字体缩放",
   });
 }
 
