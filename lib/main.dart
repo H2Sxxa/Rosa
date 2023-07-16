@@ -9,7 +9,6 @@ import 'package:system_theme/system_theme.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 
 RosaLogger appLogger = RosaLogger();
-
 WindowEffect getWinEffect() {
   switch (getJsonValue("wineffect")) {
     case 0:
@@ -85,6 +84,7 @@ class _MyAppState extends State<MyApp> {
     pageClassPatcher,
     pageDoc,
     pageSettings,
+    pageLogging,
     pageAbout
   ];
   @override
@@ -182,6 +182,10 @@ class _MyAppState extends State<MyApp> {
                   title: Text(getTranslation("settings")),
                   body: const SizedBox.shrink(),
                 ),
+                PaneItem(
+                    title: Text(getTranslation("log")),
+                    icon: const Icon(FluentIcons.bug),
+                    body: const SizedBox.shrink()),
                 PaneItem(
                     icon: const Icon(FluentIcons.accounts),
                     title: Text(getTranslation("about")),

@@ -12,6 +12,7 @@ import 'package:rosa/config/json.dart';
 import 'package:rosa/config/i18n.dart';
 import 'package:rosa/const.dart';
 import 'package:rosa/main.dart';
+import 'package:rosa/pages/widgets/logviewer.dart';
 import 'package:rosa/pages/widgets/prompts.dart';
 import 'package:rosa/pages/widgets/selector.dart';
 import 'package:rosa/pages/markdown/pagegen.dart';
@@ -260,6 +261,18 @@ var pagePastebin = ScaffoldPage.scrollable(children: [
       ),
     ],
   )),
+]);
+
+bool enablePageRefresh = false;
+GlobalKey logviewKey = GlobalKey();
+var pageLogging = ScaffoldPage.scrollable(children: [
+  MarkdownFileBuilder(path: "${getI18nfullPath()}md/log.md", ispage: false),
+  sizedBox40,
+  FilledButton(
+      child: Text(getTranslation("refresh")),
+      onPressed: () => appLogger.refreshLogPage()),
+  sizedBox20,
+  LoggingFastViewer(key: logviewKey),
 ]);
 
 GlobalKey fastviewKey = GlobalKey();

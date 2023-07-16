@@ -14,7 +14,7 @@ void initConfig() {
     "thememode": 0,
     "textscale": 1.2,
     "usemcreator": false,
-    "ghproxy": "https://ghproxy.net/",
+    "ghproxy": "https://ghproxy.com/",
     "wineffect": 0
   });
 
@@ -84,6 +84,8 @@ void initConfig() {
     "title": "标题",
     "localization": "本地化",
     "textscale": "字体缩放",
+    "log": "日志",
+    "refresh": "刷新"
   });
 }
 
