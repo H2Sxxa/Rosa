@@ -94,6 +94,6 @@ Future<String> doClassPatcher(String pluginname) async {
     appLogger.e(_.toString());
     return _.toString();
   }
-  ;
+  
   return getTranslation("finish");
 }

@@ -55,7 +55,7 @@ Future<void> showInfoBar(String title, String content, [int? level]) async {
       severity = InfoBarSeverity.info;
       break;
   }
-  ;
+  
   displayInfoBar(paneKey.currentState!.context, builder: (context, close) {
     return InfoBar(
       title: Text(title),
