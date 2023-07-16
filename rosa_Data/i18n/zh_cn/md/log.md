@@ -7,7 +7,7 @@ BUG反馈地址 https://github.com/H2Sxxa/Rosa/issues
 ### 1. 网络超时
 
 ```dart
-Dio().....contact reset
+Dio().....connect reset
 ```
 
 解决方案：前往设置界面更换Github代理地址即可.

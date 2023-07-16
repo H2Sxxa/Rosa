@@ -3,7 +3,7 @@ import 'package:rosa/config/json.dart';
 
 String getSettingFastViewContent() {
   var map = getJsonMap();
-  String res = "";
+  List<String> reslist = [];
   String key;
   String value;
   for (var entry in map.entries) {
@@ -14,9 +14,9 @@ String getSettingFastViewContent() {
       key = getTranslation(entry.key);
       value = entry.value.toString();
     }
-    res = "$res$key : $value\n";
+    reslist.add("$key : $value");
   }
-  return res;
+  return reslist.join("\n");
 }
 
 class SettingFastViewer extends StatefulWidget {
