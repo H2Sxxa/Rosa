@@ -1,5 +1,10 @@
 # ROSA - 序章
 
+## 本项目采用GPL3进行开源
+
+官方仓库 https://github.com/H2Sxxa/Rosa
+
+上不去请使用 https://steampp.net/ 进行加速
 
 # 这是什么？
 

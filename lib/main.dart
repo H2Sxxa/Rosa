@@ -26,15 +26,29 @@ WindowEffect getWinEffect() {
   }
 }
 
+bool isDark() {
+  switch (getJsonValue("thememode")) {
+    case -1:
+      return true;
+    case 1:
+      return false;
+    default:
+      //FIX not sustainable here
+      if (navigatorKey.currentState == null) {
+        return true;
+      }
+      var context = navigatorKey.currentState!.context;
+      return FluentTheme.of(context).brightness == Brightness.dark;
+  }
+}
+
 void main() async {
   appLogger.i("Start Application with init!");
   systemFontFamilies = await initFontFamilies();
   initConfig();
   WidgetsFlutterBinding.ensureInitialized();
   await Window.initialize();
-  await Window.setEffect(
-    effect: getWinEffect(),
-  );
+  await Window.setEffect(effect: getWinEffect(), dark: isDark());
   appLogger.i("Load Config", getJsonMap());
   runApp(
     const MyApp(),
@@ -87,6 +101,14 @@ class _MyAppState extends State<MyApp> {
     pageLogging,
     pageAbout
   ];
+  Color? getBackColor() {
+    if (getJsonValue("wineffect") != 0) {
+      return Colors.transparent;
+    } else {
+      return null;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     ThemeMode thememode;
@@ -101,16 +123,7 @@ class _MyAppState extends State<MyApp> {
         thememode = ThemeMode.system;
         break;
     }
-
-    Color? getBackColor() {
-      if (getJsonValue("wineffect") != 0) {
-        return Colors.transparent;
-      } else {
-        return null;
-      }
-    }
-
-    return FluentApp(
+    var app = FluentApp(
         builder: (context, child) {
           return Directionality(
             textDirection: TextDirection.ltr,
@@ -192,5 +205,6 @@ class _MyAppState extends State<MyApp> {
                     body: const SizedBox.shrink()),
               ]),
         ));
+    return app;
   }
 }

@@ -334,9 +334,7 @@ var pageSettings = ScaffoldPage.scrollable(children: [
         ],
         onChanged: (value) async {
           writeJsonValue("wineffect", value);
-          await Window.setEffect(
-            effect: getWinEffect(),
-          );
+          await Window.setEffect(effect: getWinEffect(), dark: isDark());
           refreshState();
         },
       ),
