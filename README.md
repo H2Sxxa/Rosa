@@ -11,13 +11,23 @@ Rosa是一款用于加速构建的工具箱，前身为MCreatorSetup，使用Dar
 
 # 截图
 
-![](./doc/Shotscreen0.png)
-![](./doc/Shotscreen1.png)
+![](https://github.com/H2Sxxa/Rosa/blob/main/doc/Shotscreen0.png)
+![](https://github.com/H2Sxxa/Rosa/blob/main/doc/Shotscreen1.png)
 
 # 快速上手
 
-![](./doc/htur0.png)
-![](./doc/htur1.png)
+![](https://github.com/H2Sxxa/Rosa/blob/main/doc/htur0.png)
+![](https://github.com/H2Sxxa/Rosa/blob/main/doc/htur1.png)
+
+# 常见问题
+
+## 缺失dll无法启动
+
+参考 https://learn.microsoft.com/zh-CN/cpp/windows/latest-supported-vc-redist 安装 `Visual Studio 2015, 2017, 2019...`
+
+## 镜像修补后构建环境失败
+
+https://github.com/H2Sxxa/Rosa/issues/16
 
 # 下载
 

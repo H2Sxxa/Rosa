@@ -25,6 +25,7 @@ jobs:
      - run: |
         mkdir -p build/windows/runner/Release/rosa_Data
         cp -r rosa_Data/* build/windows/runner/Release/rosa_Data/
+        cp README.md build/windows/runner/Release/
      - name: Upload Artifact
        uses: actions/upload-artifact@v3.1.2
        with:
