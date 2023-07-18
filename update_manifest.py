@@ -3,6 +3,9 @@ import os
 
 from Remilia.log import Logger
 from Remilia.res import rFile, rPath
+from Remilia.utils.cli import prompts
+
+os.chdir("forgegradle/%s" % prompts.ListPrompt("Target_dir",[prompts.Choice(_,_) for _ in os.listdir("forgegradle") if rPath("forgegradle/%s" % _).is_dir()]).prompt())
 
 logger = Logger()
 localls = [pth for pth in os.listdir() if rPath(pth).is_dir()]
