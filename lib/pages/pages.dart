@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:fluent_ui/fluent_ui.dart';
@@ -287,6 +288,17 @@ var pageSettings = ScaffoldPage.scrollable(children: [
   Row(
     mainAxisAlignment: MainAxisAlignment.spaceAround,
     children: [
+      ComboBox(
+        placeholder: Text(getTranslation("lang")),
+        items: List<ComboBoxItem>.generate(() {
+          return allI18n.length;
+        }(),
+            (index) => ComboBoxItem(
+                value: allI18n[index], child: Text(allI18n[index]))),
+        onChanged: (value) {
+          writeJsonValue("localization", value);
+        },
+      ),
       ComboBox(
         placeholder: Text(getTranslation("thememode")),
         items: [

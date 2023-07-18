@@ -85,7 +85,8 @@ void initConfig() {
     "localization": "本地化",
     "textscale": "字体缩放",
     "log": "日志",
-    "refresh": "刷新"
+    "refresh": "刷新",
+    "lang": "语言"
   });
 }
 
