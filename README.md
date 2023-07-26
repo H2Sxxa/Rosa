@@ -42,9 +42,11 @@ https://github.com/H2Sxxa/Rosa/releases/latest
 # 鸣谢（不分先后）
 
  - [cdc12345](https://github.com/cdc12345) - 参与镜像修补开发
- - [ZekerZhayard](https://github.com/ZekerZhayard) - MCreatorSetup重要实现协助者，镜像修补灵感启发与他的[mirror.gradle](https://github.com/IdeallandEarthDept/IdeallandFramework/blob/master/mirror.gradle)
+ - [bmclapi](https://bmclapidoc.bangbang93.com/) - 镜像修补镜像
+ - [Lss233's.Mirror();](http://lss233.littleservice.cn/repositories/minecraft) - 镜像修补镜像
+ - [ZekerZhayard](https://github.com/ZekerZhayard) - MCreatorSetup重要实现协助者，镜像修补灵感启发于他的[mirror.gradle](https://github.com/IdeallandEarthDept/IdeallandFramework/blob/master/mirror.gradle)
  - [fluent_ui](https://github.com/bdlukaa/fluent_ui) - 本应用使用的UI库
  - [THBwiki](https://thwiki.cc/) - 应用图标改自THBwiki图标
- - [7-zip](https://thwiki.cc/) - Jar注入class工具
+ - [7-zip](https://www.7-zip.org/) - Jar注入class工具
  - 所有使用Rosa的用户
 
