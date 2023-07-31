@@ -123,7 +123,14 @@ void setupJDKs(List jdks) async {
     appLogger.i("Start download JDK $name");
     var uri = getGithubUri(getGithubUriMap(jdk["uri"], jdk["uri"]));
     try {
-      await Dio().download(uri, "$userProfile.mcreator/gradle/jdks/$name");
+      String pathto;
+      if (getJsonValue("usemcreator")) {
+        pathto = "$userProfile.mcreator/gradle/jdks/";
+      } else {
+        pathto = "$userProfile.gradle/jdks/";
+      }
+
+      await Dio().download(uri, pathto+name);
       feedbacktext = "$feedbacktext$name from $uri \n";
       appLogger.i(feedbacktext);
     } on Exception catch (_) {

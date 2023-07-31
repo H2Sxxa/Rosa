@@ -6,7 +6,7 @@
 
 直接上传日志文件给对方是很野蛮的行为，希望你能够多多使用粘贴板
 
-感谢 https://api.mclo.gs/
+感谢 <https://api.mclo.gs/>
 
 ---
 
@@ -28,5 +28,5 @@
 
 如果因为网络原因上传失败会有Error的对话框
 
-你可以先打开 https://api.mclo.gs/1/log 使设备里拥有DNS缓存，再次重试上传
+你可以先打开 <https://api.mclo.gs/1/log> 使设备里拥有DNS缓存，再次重试上传
 
