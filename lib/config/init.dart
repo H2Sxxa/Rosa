@@ -86,7 +86,9 @@ void initConfig() {
     "textscale": "字体缩放",
     "log": "日志",
     "refresh": "刷新",
-    "lang": "语言"
+    "lang": "语言",
+    "import_custom": "导入自定义Proxifier代理",
+    "proxifier": "Proxifier式代理"
   });
 }
 

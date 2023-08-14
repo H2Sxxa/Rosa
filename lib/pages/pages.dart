@@ -27,6 +27,7 @@ var pageHome = ScaffoldPage.scrollable(children: [
 ]);
 
 List<String> _proxySelect = [];
+String _proxyPort = "7890";
 var pageProxy = ScaffoldPage.scrollable(children: [
   MarkdownFileBuilder(path: "${getI18nfullPath()}md/proxy.md", ispage: false),
   Card(
@@ -64,6 +65,21 @@ var pageProxy = ScaffoldPage.scrollable(children: [
       onPressed: () {
         showInfoBar(getTranslation("info"), getTranslation("start_task"));
         runProxyTasks(_proxySelect);
+      }),
+  sizedBox40,
+  MarkdownFileBuilder(
+      path: "${getI18nfullPath()}md/custom_proxy.md", ispage: false),
+  sizedBox20,
+  TextBox(
+    maxLines: 1,
+    onChanged: (value) => _proxyPort = value,
+    placeholder: _proxyPort,
+  ),
+  sizedBox20,
+  FilledButton(
+      child: Text(getTranslation("import_custom")),
+      onPressed: () {
+        importCustomProxy(_proxyPort);
       })
 ]);
 

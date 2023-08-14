@@ -130,7 +130,7 @@ void setupJDKs(List jdks) async {
         pathto = "$userProfile.gradle/jdks/";
       }
 
-      await Dio().download(uri, pathto+name);
+      await Dio().download(uri, pathto + name);
       feedbacktext = "$feedbacktext$name from $uri \n";
       appLogger.i(feedbacktext);
     } on Exception catch (_) {
@@ -139,4 +139,19 @@ void setupJDKs(List jdks) async {
     }
   }
   showConDialog(Text(feedbacktext), getTranslation("feedback"));
+}
+
+void importCustomProxy(String port) {
+  String rawPPX = File("rosa_Data/bin/proxy/Minecraft.ppx").readAsStringSync();
+  String customPPX = rawPPX.replaceAll(RegExp(r"1080"), port);
+  File("rosa_Data/bin/proxy/Custom.ppx").writeAsStringSync(customPPX);
+  Process.runSync(
+      "start",
+      [
+        (File("C:/Program Files (x86)/Proxifier/Proxifier.exe").absolute.path),
+        File("rosa_Data/bin/proxy/Custom.ppx").absolute.path,
+        "silent-load"
+      ],
+      runInShell: true);
+  showConDialog(Text(getTranslation("finish")), getTranslation("feedback"));
 }

@@ -168,7 +168,7 @@ class _MyAppState extends State<MyApp> {
                 PaneItemHeader(header: Text(getTranslation("tookit"))),
                 PaneItem(
                   icon: const Icon(FluentIcons.toolbox),
-                  title: const Text("Proxifier & Shadowsocks"),
+                  title: Text(getTranslation("proxifier")),
                   body: const SizedBox.shrink(),
                 ),
                 PaneItem(
