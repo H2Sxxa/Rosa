@@ -401,11 +401,7 @@ var pageSettings = ScaffoldPage.scrollable(children: [
         placeholder: Text(getTranslation("ghproxy")),
         items: [
           const ComboBoxItem(
-            value: "https://ghproxy.net/",
-            child: Text("ghproxy.net"),
-          ),
-          const ComboBoxItem(
-              value: "https://ghproxy.com/", child: Text("ghproxy.com")),
+              value: "https://mirror.ghproxy.com/", child: Text("mirror.ghproxy.com")),
           ComboBoxItem(value: "", child: Text(getTranslation("none")))
         ],
         onChanged: (value) => writeJsonValue("ghproxy", value),
