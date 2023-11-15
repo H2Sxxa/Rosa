@@ -14,7 +14,7 @@ void initConfig() {
     "thememode": 0,
     "textscale": 1.2,
     "usemcreator": false,
-    "ghproxy": "https://ghproxy.com/",
+    "ghproxy": "https://mirror.ghproxy.com/",
     "wineffect": 0
   });
 
