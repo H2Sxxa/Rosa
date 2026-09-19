@@ -29,6 +29,8 @@ Rosa是一款用于加速构建的工具箱，前身为MCreatorSetup，使用Dar
 
 https://github.com/H2Sxxa/Rosa/issues/16
 
+若无法构建，请删除 `.gradle/caches/jars-9` 和 `.gradle/caches/modules-2` 然后重试。
+
 # 下载
 
 https://github.com/H2Sxxa/Rosa/releases/latest
@@ -49,4 +51,3 @@ https://github.com/H2Sxxa/Rosa/releases/latest
  - [THBwiki](https://thwiki.cc/) - 应用图标改自THBwiki图标
  - [7-zip](https://www.7-zip.org/) - Jar注入class工具
  - 所有使用Rosa的用户
-
